@@ -38,6 +38,32 @@ test('validateDraft flags medication dosage advice', () => {
   assert.ok(validateDraft(d).some((p) => /dosage/i.test(p)));
 });
 
+test('validateDraft flags crypto hype and price predictions', () => {
+  for (const bad of ['This coin offers guaranteed returns.', 'Get ready to go to the moon!', 'It could be a 100x play.', 'Bitcoin will reach $500,000 soon.']) {
+    const d = goodDraft();
+    d.body += `\n\n${bad}`;
+    assert.ok(validateDraft(d).length > 0, bad);
+  }
+});
+
+test('validateDraft allows honest risk wording and everyday prices', () => {
+  const d = goodDraft();
+  d.body += '\n\nNothing here is guaranteed, and prices can fall. A cheap $5 notebook works fine for records.';
+  assert.deepEqual(validateDraft(d), []);
+});
+
+test('validateDraft allows warnings about hype (scam-awareness posts)', () => {
+  for (const ok of [
+    'Scammers often promise guaranteed returns to lure you in.',
+    'There are no guaranteed returns in crypto.',
+    'Be wary of anyone who talks about a 100x coin.',
+  ]) {
+    const d = goodDraft();
+    d.body += `\n\n${ok}`;
+    assert.deepEqual(validateDraft(d), [], ok);
+  }
+});
+
 test('validateDraft allows everyday quantities like water in ml', () => {
   const d = goodDraft();
   d.body += '\n\nKeep a 500 ml bottle on your desk and refill it twice.';

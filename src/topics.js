@@ -1,69 +1,68 @@
-// Topic bank: every audience x theme pair, plus a varied post format.
+// Picks what to write next: first a category, then an unused audience x theme in it.
 // History is used to avoid repeats and back-to-back sameness.
+import { getCategory } from './categories.js';
 
-export const AUDIENCES = [
-  { id: 'kids', label: 'children (5-12 years) and their parents' },
-  { id: 'teens', label: 'teenagers (13-19 years)' },
-  { id: 'young-adults', label: 'young adults in their 20s and 30s' },
-  { id: 'midlife', label: 'adults in their 40s and 50s' },
-  { id: 'seniors', label: 'seniors (60+) and people caring for them' },
-  { id: 'family', label: 'the whole family, all ages together' },
-];
+/** Topic keys are "category:audience:theme"; older health-only keys were "audience:theme". */
+export function parseTopicKey(key = '') {
+  const parts = key.split(':');
+  if (parts.length === 2) return { category: 'health', audience: parts[0], theme: parts[1] };
+  return { category: parts[0], audience: parts[1], theme: parts[2] };
+}
 
-export const THEMES = [
-  { id: 'hydration', label: 'drinking enough water through the day' },
-  { id: 'sleep', label: 'better sleep habits' },
-  { id: 'breakfast', label: 'a healthy, simple breakfast' },
-  { id: 'veg-fruit', label: 'eating more vegetables and fruit' },
-  { id: 'sugar', label: 'cutting back on added sugar' },
-  { id: 'walking', label: 'daily walking and staying active' },
-  { id: 'strength', label: 'gentle strength exercises at home' },
-  { id: 'posture', label: 'posture and back care' },
-  { id: 'screens', label: 'screen time and eye strain' },
-  { id: 'stress', label: 'handling everyday stress' },
-  { id: 'mood', label: 'small habits for a better mood' },
-  { id: 'hygiene', label: 'hand washing and everyday hygiene' },
-  { id: 'oral', label: 'teeth and gum care' },
-  { id: 'sun', label: 'sun safety and heat' },
-  { id: 'balance', label: 'balance, stretching and flexibility' },
-  { id: 'social', label: 'staying connected with people' },
-  { id: 'snacks', label: 'smarter snacking' },
-  { id: 'checkups', label: 'regular health check-ups and knowing when to see a doctor' },
-];
-
-export const FORMATS = [
-  'a list of 5 practical tips, each with a short "why it helps"',
-  'myth vs fact: 4 common myths, each followed by the fact',
-  'a simple one-day routine from morning to night',
-  'a short Q&A answering 4 questions people often ask',
-  'a quick-start checklist people can save, with a short intro',
-  'a "small swaps" guide: 5 easy swaps from a less healthy habit to a better one',
-];
-
-export function allTopics() {
-  return AUDIENCES.flatMap((audience) =>
-    THEMES.map((theme) => ({ key: `${audience.id}:${theme.id}`, audience, theme })),
-  );
+export function allTopics(categoryIds) {
+  return categoryIds.flatMap((id) => {
+    const category = getCategory(id);
+    return category.audiences.flatMap((audience) =>
+      category.themes.map((theme) => ({ key: `${id}:${audience.id}:${theme.id}`, category, audience, theme })),
+    );
+  });
 }
 
 const pick = (arr, random) => arr[Math.floor(random() * arr.length)];
 
 /**
- * Picks an unused topic. Prefers one whose audience and theme both differ
- * from the previous post; falls back gracefully as the bank gets used up.
+ * Never repeats the previous post's category (when more than one is enabled);
+ * among the rest, the longer a category has waited, the more likely it is picked.
+ * So the mix stays even without falling into a fixed, robotic order.
  */
-export function pickTopic(history = [], { random = Math.random } = {}) {
-  const topics = allTopics();
-  const used = new Set(history.map((h) => h.topicKey));
-  const last = history.at(-1)?.topicKey?.split(':') ?? [];
+function pickCategory(parsed, categoryIds, random) {
+  const postsAgo = (id) => {
+    const i = parsed.findLastIndex((p) => p.category === id);
+    return i === -1 ? categoryIds.length + 1 : parsed.length - i;
+  };
+  const last = parsed.at(-1)?.category;
+  const candidates = categoryIds.length > 1 ? categoryIds.filter((id) => id !== last) : categoryIds;
+  const weights = candidates.map(postsAgo);
+  let r = random() * weights.reduce((a, b) => a + b, 0);
+  for (let i = 0; i < candidates.length; i++) {
+    r -= weights[i];
+    if (r < 0) return candidates[i];
+  }
+  return candidates.at(-1);
+}
+
+/**
+ * Picks an unused topic. Within the chosen category, prefers one whose audience and
+ * theme both differ from that category's previous post; falls back as topics get used up.
+ */
+export function pickTopic(history = [], { categories, random = Math.random }) {
+  const parsed = history.map((h) => ({ ...parseTopicKey(h.topicKey), key: h.topicKey }));
+  const categoryId = pickCategory(parsed, categories, random);
+  const category = getCategory(categoryId);
+
+  const mine = parsed.filter((p) => p.category === categoryId);
+  // Compare normalised keys so legacy "audience:theme" entries still count as used.
+  const used = new Set(mine.map((p) => `${p.category}:${p.audience}:${p.theme}`));
+  const last = mine.at(-1);
+  const topics = allTopics([categoryId]);
 
   let pool = topics.filter((t) => !used.has(t.key));
   if (pool.length === 0) {
-    // Every combination used: start a new cycle, only skipping the most recent 20.
-    const recent = new Set(history.slice(-20).map((h) => h.topicKey));
+    // Every combination used: start a new cycle, only skipping this category's recent 20.
+    const recent = new Set(mine.slice(-20).map((p) => `${p.category}:${p.audience}:${p.theme}`));
     pool = topics.filter((t) => !recent.has(t.key));
   }
-  const varied = pool.filter((t) => t.audience.id !== last[0] && t.theme.id !== last[1]);
+  const varied = pool.filter((t) => t.audience.id !== last?.audience && t.theme.id !== last?.theme);
   const topic = pick(varied.length ? varied : pool, random);
-  return { ...topic, format: pick(FORMATS, random) };
+  return { ...topic, format: pick(category.formats, random) };
 }

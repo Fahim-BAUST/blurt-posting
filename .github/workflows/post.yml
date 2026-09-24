@@ -1,4 +1,4 @@
-name: Blurt health post
+name: Blurt auto post
 
 # Wakes every 30 minutes; src/check-due.js decides whether a post is actually due.
 # The real gap between posts is random, 7-9 hours (see MIN/MAX_INTERVAL_HOURS).
@@ -50,6 +50,7 @@ jobs:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           POST_FOOTER: ${{ vars.POST_FOOTER }}
+          POST_CATEGORIES: ${{ vars.POST_CATEGORIES }}
           MIN_INTERVAL_HOURS: ${{ vars.MIN_INTERVAL_HOURS }}
           MAX_INTERVAL_HOURS: ${{ vars.MAX_INTERVAL_HOURS }}
 

@@ -30,7 +30,7 @@ test('retries with feedback when the first draft is invalid', async () => {
   const calls = mockFetch((n) => ({ json: geminiReply(draft(n === 1 ? 'too short' : words(400))) }));
   const cfg = loadConfig({ GEMINI_API_KEY: 'test' });
 
-  const { draft: d, provider } = await generateDraft(cfg, pickTopic([]), { log: silent, retryDelayMs: 0 });
+  const { draft: d, provider } = await generateDraft(cfg, pickTopic([], { categories: ['health'] }), { log: silent, retryDelayMs: 0 });
 
   assert.equal(provider, 'gemini (gemini-3.6-flash)');
   assert.equal(d.title, 'Drink water');
@@ -44,7 +44,7 @@ test('falls back to Groq when Gemini keeps failing', async () => {
   );
   const cfg = loadConfig({ GEMINI_API_KEY: 'g', GEMINI_MODEL: 'only-model', GROQ_API_KEY: 'q' });
 
-  const { provider } = await generateDraft(cfg, pickTopic([]), { log: silent, retryDelayMs: 0 });
+  const { provider } = await generateDraft(cfg, pickTopic([], { categories: ['health'] }), { log: silent, retryDelayMs: 0 });
 
   assert.equal(provider, 'groq (openai/gpt-oss-120b)');
   assert.equal(calls.filter((c) => c.url.includes('googleapis')).length, 2);
@@ -53,7 +53,7 @@ test('falls back to Groq when Gemini keeps failing', async () => {
 test('throws a combined error when every provider fails', async () => {
   mockFetch(() => ({ status: 500, json: { error: 'down' } }));
   const cfg = loadConfig({ GEMINI_API_KEY: 'g' });
-  await assert.rejects(generateDraft(cfg, pickTopic([]), { log: silent, retryDelayMs: 0 }), /Could not generate a usable post/);
+  await assert.rejects(generateDraft(cfg, pickTopic([], { categories: ['health'] }), { log: silent, retryDelayMs: 0 }), /Could not generate a usable post/);
 });
 
 test('a retired Gemini model (404) is skipped straight away for the next model', async () => {
@@ -62,7 +62,7 @@ test('a retired Gemini model (404) is skipped straight away for the next model',
   );
   const cfg = loadConfig({ GEMINI_API_KEY: 'g', GEMINI_MODEL: 'old-model,new-model' });
 
-  const { provider } = await generateDraft(cfg, pickTopic([]), { log: silent, retryDelayMs: 0 });
+  const { provider } = await generateDraft(cfg, pickTopic([], { categories: ['health'] }), { log: silent, retryDelayMs: 0 });
 
   assert.equal(provider, 'gemini (new-model)');
   assert.equal(calls.filter((c) => c.url.includes('old-model')).length, 1);

@@ -12,6 +12,19 @@ export function parseModelJson(text) {
   return JSON.parse(text.slice(start, end + 1));
 }
 
+// Checked on every post; they matter most for crypto but are never acceptable anywhere.
+const HYPE = /\b(guaranteed (returns?|profits?|gains?|income)|to the moon|\d{2,}x (gains?|returns?)|(100|1000)x|get rich quick|risk[- ]free (profit|returns?|investment))\b/gi;
+// Warning about hype is fine ("scammers promise guaranteed returns", "there are no guaranteed returns").
+const WARNING_CONTEXT = /\b(no|not|never|nothing|nobody|isn'?t|aren'?t|without|don'?t|doesn'?t|beware|avoid|promis\w*|claim\w*|scam\w*|fake|red flags?|too good|anyone who|lure\w*)\b/i;
+
+function hasHype(text) {
+  for (const m of text.matchAll(HYPE)) {
+    if (!WARNING_CONTEXT.test(text.slice(Math.max(0, m.index - 60), m.index))) return true;
+  }
+  return false;
+}
+const PRICE_PREDICTION = /\b(will|could|is going to|set to) (easily )?(reach|hit|surpass|climb to|pump to) \$\s?\d/i;
+
 const wordCount = (s) => s.trim().split(/\s+/).filter(Boolean).length;
 
 /** Returns a list of problems; an empty list means the draft is usable. */
@@ -28,6 +41,8 @@ export function validateDraft(d) {
     if (n < MIN_WORDS || n > MAX_WORDS) problems.push(`body has ${n} words (want ${MIN_WORDS}-${MAX_WORDS})`);
     if (/^\s*#\s/.test(d.body)) problems.push('body starts with an H1 heading (title is shown separately)');
     if (/\b\d+(\.\d+)?\s?(mg|mcg|µg|iu)\b/i.test(d.body)) problems.push('body contains medication/supplement dosage');
+    if (hasHype(`${d.title}\n${d.body}`)) problems.push('contains investment hype or promised returns');
+    if (PRICE_PREDICTION.test(d.body)) problems.push('contains a price prediction');
   }
   return problems;
 }

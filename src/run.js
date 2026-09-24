@@ -44,7 +44,8 @@ async function main() {
     }
   }
 
-  const topic = pickTopic(state.history);
+  const topic = pickTopic(state.history, { categories: cfg.categories });
+  const footer = cfg.footerOverride ?? topic.category.footer;
   console.log(`Topic: ${topic.key} | format: ${topic.format}`);
 
   const recentTitles = state.history.slice(-15).map((h) => h.title).filter(Boolean);
@@ -55,12 +56,12 @@ async function main() {
   const { ext, mime } = sniffImageType(image);
   console.log(`Image (${imageProvider}): ${Math.round(image.length / 1024)} KB ${ext}`);
 
-  const tags = finalTags(draft.tags, cfg.blurt.category);
+  const tags = finalTags(draft.tags, topic.category.tag);
 
   if (preview) {
     await mkdir('preview', { recursive: true });
     await writeFile(`preview/image.${ext}`, image);
-    const body = composeBody(draft, { imageUrl: `image.${ext}`, footer: cfg.footer });
+    const body = composeBody(draft, { imageUrl: `image.${ext}`, footer });
     await writeFile('preview/post.md', `# ${draft.title}\n\nTags: ${tags.join(', ')}\n\n${body}`);
     console.log('Preview written to preview/post.md and preview/image.' + ext);
     return;
@@ -76,7 +77,7 @@ async function main() {
   });
   console.log(`Uploaded image: ${imageUrl}`);
 
-  const body = composeBody(draft, { imageUrl, footer: cfg.footer });
+  const body = composeBody(draft, { imageUrl, footer });
   const op = blurt.buildPost({ username: cfg.blurt.username, title: draft.title, body, tags, imageUrl, app: cfg.app });
   const confirmation = await blurt.publish(client, op, cfg.blurt.postingKey);
   const permlink = op[1].permlink;

@@ -1,8 +1,17 @@
-# Blurt Health Poster
+# Blurt Auto Poster
 
-Posts a health and wellness tip with an AI-generated image to [Blurt](https://blurt.blog). There's a random gap of **7 to 9 hours** between posts, about 3 a day. It runs free on GitHub Actions, so you don't need a server.
+Posts an AI-assisted article with an AI-generated image to [Blurt](https://blurt.blog), rotating between **health**, **crypto**, **daily lifestyle** and **technology**. There's a random gap of **7 to 9 hours** between posts, about 3 a day. It runs free on GitHub Actions, so you don't need a server.
 
-Each post rotates through audiences (kids, teens, young adults, 40s/50s, seniors, whole family), 18 health themes, and 6 post formats: tips list, myth vs fact, daily routine, Q&A, checklist, and small swaps. It avoids repeating a topic and won't post the same audience or theme twice in a row.
+| Category | Blurt tag | Themes | Examples |
+|---|---|---|---|
+| Health | `health` | 18 | sleep, hydration, posture, stress, check-ups |
+| Crypto (educational) | `crypto` | 16 | wallet security, seed phrases, scams, how Blurt rewards work |
+| Daily lifestyle | `lifestyle` | 16 | routines, budgeting, decluttering, hobbies, digital detox |
+| Technology | `technology` | 17 | AI assistants, deepfakes, passkeys, backups, EVs, solar |
+
+Each category has its own audiences, post formats, writing rules and disclaimer (see `src/categories.js`). The same category is never posted twice in a row, and a category that hasn't appeared for a while becomes more likely, so the mix stays even without a fixed, robotic order. Within a category, a topic isn't repeated until all of them have been used.
+
+Crypto and technology posts are deliberately **evergreen explainers**, not news. The AI models' knowledge is months old, so they're told not to state prices, predictions, release dates or version numbers.
 
 ## How it works
 
@@ -19,8 +28,8 @@ pick topic -> Gemini writes post (Groq fallback) -> quality checks (retry with f
 Safety nets:
 - A lock stops two runs from happening at the same time.
 - Before posting, it checks the chain for the account's last post, so a failed state save can't cause a double post.
-- Drafts with drug or supplement doses (mg, mcg, IU) are rejected.
-- A disclaimer footer is added to every post.
+- Drafts are rejected and rewritten if they contain drug or supplement doses (mg, mcg, IU), investment hype ("guaranteed returns", "100x", "to the moon"), or price predictions. Honest warnings such as "scammers promise guaranteed returns" are allowed.
+- Every post gets a footer: "not medical advice" for health, "not financial advice" for crypto, plus an AI-assistance note on all posts.
 
 ## Cost: free
 
@@ -47,11 +56,12 @@ Safety nets:
    ```
 3. **Push this folder to a GitHub repository.**
 4. **Add secrets.** In the repo, go to *Settings > Secrets and variables > Actions* and add these secrets: `BLURT_USERNAME`, `BLURT_POSTING_KEY`, `GEMINI_API_KEY`, and optionally `CF_ACCOUNT_ID`, `CF_API_TOKEN`, `GROQ_API_KEY`.
-5. **Post the first one.** Go to *Actions > Blurt health post > Run workflow*, tick **force**, and check the post on blurt.blog. After that it runs on its own.
+5. **Post the first one.** Go to *Actions > Blurt auto post > Run workflow*, tick **force**, and check the post on blurt.blog. After that it runs on its own.
 
 Optional repo **variables** (same settings page, *Variables* tab):
 - `MIN_INTERVAL_HOURS` / `MAX_INTERVAL_HOURS` (default 7 / 9)
-- `POST_FOOTER` (custom text, or `none`)
+- `POST_CATEGORIES`: which categories to use, e.g. `health,technology` (default: all four)
+- `POST_FOOTER`: custom text for every post, or `none` (default: each category's own disclaimer)
 
 ## Commands
 
@@ -64,7 +74,7 @@ Optional repo **variables** (same settings page, *Variables* tab):
 
 ## Operating notes
 
-- **Pause:** go to *Actions > Blurt health post > ... > Disable workflow*.
+- **Pause:** go to *Actions > Blurt auto post > ... > Disable workflow*.
 - **Failures:** a failed run doesn't move the schedule, so it retries 30 minutes later. GitHub emails you when a run fails.
 - **Inactivity:** GitHub may disable scheduled workflows after 60 days with no repo activity. The bot's state commits should count as activity, but check now and then.
 - **Review early posts:** read the first posts yourself, and remember that Blurt curators can downvote content they see as low-effort automation.
