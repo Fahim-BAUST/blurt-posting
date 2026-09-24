@@ -46,7 +46,7 @@ test('falls back to Groq when Gemini keeps failing', async () => {
 
   const { provider } = await generateDraft(cfg, pickTopic([]), { log: silent, retryDelayMs: 0 });
 
-  assert.equal(provider, 'groq');
+  assert.equal(provider, 'groq (openai/gpt-oss-120b)');
   assert.equal(calls.filter((c) => c.url.includes('googleapis')).length, 2);
 });
 

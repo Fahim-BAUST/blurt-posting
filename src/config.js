@@ -26,7 +26,8 @@ export function loadConfig(env = process.env) {
     },
     groq: {
       apiKey: env.GROQ_API_KEY?.trim(),
-      model: env.GROQ_MODEL || 'llama-3.3-70b-versatile',
+      // Comma-separated; tried in order (checked against Groq's model list 24 Sep 2026).
+      models: list(env.GROQ_MODEL, ['openai/gpt-oss-120b', 'qwen/qwen3.8-27b']),
     },
     cloudflare: {
       accountId: env.CF_ACCOUNT_ID?.trim(),

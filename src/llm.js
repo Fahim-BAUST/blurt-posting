@@ -53,7 +53,11 @@ export async function generateDraft(cfg, topic, { recentTitles = [], log = conso
       providers.push([`gemini (${model})`, (p) => gemini({ apiKey: cfg.gemini.apiKey, model }, p)]);
     }
   }
-  if (cfg.groq.apiKey) providers.push(['groq', (p) => groq(cfg.groq, p)]);
+  if (cfg.groq.apiKey) {
+    for (const model of cfg.groq.models) {
+      providers.push([`groq (${model})`, (p) => groq({ apiKey: cfg.groq.apiKey, model }, p)]);
+    }
+  }
 
   const errors = [];
   for (const [name, call] of providers) {
