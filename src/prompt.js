@@ -36,7 +36,6 @@ Reply with ONLY this JSON object:
 {
   "title": "catchy but honest title, under 90 characters, no clickbait",
   "body": "the full post in markdown",
-  "tags": ["3 or 4 lowercase single-word or hyphenated tags, e.g. ${category.exampleTags}"],
   "image_prompt": "detailed photo description, 30-60 words",
   "image_alt": "short plain description of the image"
 }`;

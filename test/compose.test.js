@@ -1,13 +1,12 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parseModelJson, validateDraft, composeBody, finalTags } from '../src/compose.js';
+import { parseModelJson, validateDraft, composeBody } from '../src/compose.js';
 
 const words = (n) => Array.from({ length: n }, (_, i) => `word${i}`).join(' ');
 
 const goodDraft = () => ({
   title: 'Five small habits that protect your sleep',
   body: `## Why it matters\n\n${words(400)}`,
-  tags: ['sleep', 'wellness', 'lifestyle'],
   image_prompt: 'A calm bedroom at dusk with soft warm light, photo',
   image_alt: 'A calm bedroom at dusk',
 });
@@ -85,12 +84,4 @@ test('composeBody puts the image first and the footer last', () => {
 test('composeBody omits the footer when it is empty', () => {
   const body = composeBody(goodDraft(), { imageUrl: 'https://img.example/x.jpg', footer: '' });
   assert.ok(!body.includes('---'));
-});
-
-test('finalTags always leads with the category and caps at 5', () => {
-  const tags = finalTags(['Sleep', 'health', 'Wellness', 'a b', 'kids', 'more', 'extra'], 'health');
-  assert.equal(tags[0], 'health');
-  assert.equal(tags.length, 5);
-  assert.equal(new Set(tags).size, tags.length);
-  assert.ok(tags.every((t) => /^[a-z0-9-]+$/.test(t)));
 });

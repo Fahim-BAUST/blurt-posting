@@ -9,7 +9,8 @@ import { loadState, saveState } from './state.js';
 import { pickTopic } from './topics.js';
 import { generateDraft } from './llm.js';
 import { generateImage, sniffImageType } from './image.js';
-import { composeBody, finalTags } from './compose.js';
+import { composeBody } from './compose.js';
+import { tagsFor } from './categories.js';
 
 const args = new Set(process.argv.slice(2));
 const preview = args.has('--preview');
@@ -56,7 +57,7 @@ async function main() {
   const { ext, mime } = sniffImageType(image);
   console.log(`Image (${imageProvider}): ${Math.round(image.length / 1024)} KB ${ext}`);
 
-  const tags = finalTags(draft.tags, topic.category.tag);
+  const tags = tagsFor(topic);
 
   if (preview) {
     await mkdir('preview', { recursive: true });

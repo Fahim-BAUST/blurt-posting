@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { CATEGORIES, getCategory } from '../src/categories.js';
+import { CATEGORIES, ACTIVE_TAGS, getCategory, tagsFor } from '../src/categories.js';
 import { allTopics, pickTopic, parseTopicKey } from '../src/topics.js';
 
 const ALL = CATEGORIES.map((c) => c.id);
@@ -12,7 +12,7 @@ test('topic bank covers every audience/theme pair in every category', () => {
 
 test('every category has the fields the prompt and footer rely on', () => {
   for (const c of CATEGORIES) {
-    assert.ok(c.tag && c.label && c.footer && c.exampleTags, c.id);
+    assert.ok(c.tags.length && c.label && c.footer, c.id);
     assert.ok(c.audiences.length && c.themes.length && c.formats.length && c.rules.length, c.id);
   }
 });
@@ -86,4 +86,21 @@ test('pickTopic still works once every topic in a category has been used', () =>
   const t = pickTopic(history, { categories: ['lifestyle'] });
   assert.ok(t.key);
   assert.ok(t.category.formats.includes(t.format));
+});
+
+test('every topic gets 4-5 unique, researched tags led by its category tag', () => {
+  for (const topic of allTopics(ALL)) {
+    const tags = tagsFor(topic);
+    assert.ok(tags.length >= 4 && tags.length <= 5, `${topic.key}: ${tags.length} tags`);
+    assert.equal(new Set(tags).size, tags.length, topic.key);
+    assert.equal(tags[0], topic.category.tags[0], topic.key);
+    for (const tag of tags) assert.ok(ACTIVE_TAGS.includes(tag), `${topic.key}: "${tag}" is not in ACTIVE_TAGS`);
+  }
+});
+
+test('theme-specific tags are included', () => {
+  const [ai] = allTopics(['technology']).filter((t) => t.theme.id === 'deepfakes');
+  assert.deepEqual(tagsFor(ai), ['technology', 'ai', 'science', 'blurt', 'blog']);
+  const [food] = allTopics(['health']).filter((t) => t.theme.id === 'breakfast');
+  assert.deepEqual(tagsFor(food), ['health', 'food', 'wellness', 'life', 'blurt']);
 });

@@ -2,6 +2,20 @@
 // Themes are evergreen on purpose: the AI models' knowledge is months old, so
 // "latest news" style posts would risk stating outdated or invented facts.
 
+// Tags were picked from on-chain activity (posts and distinct authors in the last
+// 30 days, checked 24 Sep 2026). Unused tags (e.g. "productivity", "habits", "gadgets",
+// "tips") were left out, and "actifit" was avoided because it's for Actifit app reports.
+// "blurt" is the busiest general tag (~300 posts, 95 authors), then "blog".
+export const ACTIVE_TAGS = [
+  'health', 'wellness', 'life', 'food', 'fitness', 'mentalhealth',
+  'crypto', 'blockchain', 'cryptocurrency', 'web3',
+  'lifestyle', 'blurtlife', 'money', 'travel', 'nature',
+  'technology', 'science', 'ai', 'privacy', 'cybersecurity', 'energy',
+  'blurt', 'blog',
+];
+const GENERAL_TAGS = ['blurt', 'blog'];
+const MAX_TAGS = 5;
+
 const AI_NOTE = 'Written with AI assistance; image is AI-generated.';
 
 const COMMON_FORMATS = [
@@ -14,7 +28,7 @@ const COMMON_FORMATS = [
 export const CATEGORIES = [
   {
     id: 'health',
-    tag: 'health',
+    tags: ['health', 'wellness', 'life'],
     label: 'health and wellness',
     audiences: [
       { id: 'kids', label: 'children (5-12 years) and their parents' },
@@ -27,21 +41,21 @@ export const CATEGORIES = [
     themes: [
       { id: 'hydration', label: 'drinking enough water through the day' },
       { id: 'sleep', label: 'better sleep habits' },
-      { id: 'breakfast', label: 'a healthy, simple breakfast' },
-      { id: 'veg-fruit', label: 'eating more vegetables and fruit' },
-      { id: 'sugar', label: 'cutting back on added sugar' },
-      { id: 'walking', label: 'daily walking and staying active' },
-      { id: 'strength', label: 'gentle strength exercises at home' },
-      { id: 'posture', label: 'posture and back care' },
+      { id: 'breakfast', label: 'a healthy, simple breakfast', tags: ['food'] },
+      { id: 'veg-fruit', label: 'eating more vegetables and fruit', tags: ['food'] },
+      { id: 'sugar', label: 'cutting back on added sugar', tags: ['food'] },
+      { id: 'walking', label: 'daily walking and staying active', tags: ['fitness'] },
+      { id: 'strength', label: 'gentle strength exercises at home', tags: ['fitness'] },
+      { id: 'posture', label: 'posture and back care', tags: ['fitness'] },
       { id: 'screens', label: 'screen time and eye strain' },
-      { id: 'stress', label: 'handling everyday stress' },
-      { id: 'mood', label: 'small habits for a better mood' },
+      { id: 'stress', label: 'handling everyday stress', tags: ['mentalhealth'] },
+      { id: 'mood', label: 'small habits for a better mood', tags: ['mentalhealth'] },
       { id: 'hygiene', label: 'hand washing and everyday hygiene' },
       { id: 'oral', label: 'teeth and gum care' },
       { id: 'sun', label: 'sun safety and heat' },
-      { id: 'balance', label: 'balance, stretching and flexibility' },
-      { id: 'social', label: 'staying connected with people' },
-      { id: 'snacks', label: 'smarter snacking' },
+      { id: 'balance', label: 'balance, stretching and flexibility', tags: ['fitness'] },
+      { id: 'social', label: 'staying connected with people', tags: ['mentalhealth'] },
+      { id: 'snacks', label: 'smarter snacking', tags: ['food'] },
       { id: 'checkups', label: 'regular health check-ups and knowing when to see a doctor' },
     ],
     formats: [
@@ -54,12 +68,11 @@ export const CATEGORIES = [
       'Do NOT give medication or supplement names with doses, or diagnose anything. Where relevant, say when to see a doctor.',
       'For children, only suggest things parents can safely supervise.',
     ],
-    exampleTags: 'wellness, nutrition, fitness, lifestyle',
     footer: `*These are general wellness tips, not medical advice. Please talk to a doctor about your own health. ${AI_NOTE}*`,
   },
   {
     id: 'crypto',
-    tag: 'crypto',
+    tags: ['crypto', 'blockchain', 'cryptocurrency'],
     label: 'crypto and blockchain (educational)',
     audiences: [
       { id: 'beginners', label: 'complete beginners who are curious about crypto' },
@@ -71,15 +84,15 @@ export const CATEGORIES = [
       { id: 'wallet-security', label: 'keeping a crypto wallet secure' },
       { id: 'seed-phrase', label: 'what a seed/recovery phrase is and how to store it safely' },
       { id: 'scams', label: 'spotting common crypto scams and phishing' },
-      { id: 'blockchain-basics', label: 'how a blockchain works, in plain words' },
+      { id: 'blockchain-basics', label: 'how a blockchain works, in plain words', tags: ['web3'] },
       { id: 'hot-vs-cold', label: 'hot wallets vs hardware (cold) wallets' },
       { id: 'keys', label: 'public keys, private keys and why "not your keys, not your coins" matters' },
       { id: 'stablecoins', label: 'what stablecoins are and their risks' },
       { id: 'fees', label: 'why crypto transactions have fees' },
       { id: 'volatility', label: 'understanding volatility and only risking what you can afford to lose' },
       { id: 'dyor', label: 'how to research a crypto project before trusting it' },
-      { id: 'defi', label: 'what DeFi is, and its main risks' },
-      { id: 'nfts', label: 'what NFTs actually are' },
+      { id: 'defi', label: 'what DeFi is, and its main risks', tags: ['web3'] },
+      { id: 'nfts', label: 'what NFTs actually are', tags: ['web3'] },
       { id: 'records', label: 'keeping good records of crypto activity (for taxes and peace of mind)' },
       { id: 'exchanges', label: 'using exchanges safely: 2FA, withdrawals and account security' },
       { id: 'blurt-earning', label: 'how rewards work on social blockchains like Blurt (posting, curation, staking)' },
@@ -97,12 +110,11 @@ export const CATEGORIES = [
       'Be balanced: mention risks honestly alongside benefits. Prioritise safety and security.',
       'Never ask readers to share keys or seed phrases, and remind them nobody legitimate will ask for them.',
     ],
-    exampleTags: 'cryptocurrency, blockchain, security, blurt, defi',
     footer: `*This is general education, not financial advice. Crypto is risky; do your own research. ${AI_NOTE}*`,
   },
   {
     id: 'lifestyle',
-    tag: 'lifestyle',
+    tags: ['lifestyle', 'life', 'blurtlife'],
     label: 'daily lifestyle',
     audiences: [
       { id: 'students', label: 'students' },
@@ -116,18 +128,18 @@ export const CATEGORIES = [
       { id: 'morning', label: 'a calmer morning routine' },
       { id: 'evening', label: 'winding down in the evening' },
       { id: 'declutter', label: 'decluttering and keeping a tidy home' },
-      { id: 'budget', label: 'simple budgeting and saving habits' },
-      { id: 'meal-prep', label: 'easy meal planning and cooking at home' },
+      { id: 'budget', label: 'simple budgeting and saving habits', tags: ['money'] },
+      { id: 'meal-prep', label: 'easy meal planning and cooking at home', tags: ['food'] },
       { id: 'focus', label: 'staying focused and beating procrastination' },
       { id: 'time', label: 'managing time without burning out' },
-      { id: 'digital-detox', label: 'taking breaks from phones and social media' },
+      { id: 'digital-detox', label: 'taking breaks from phones and social media', tags: ['mentalhealth'] },
       { id: 'hobbies', label: 'finding and keeping a hobby' },
       { id: 'reading', label: 'building a reading habit' },
-      { id: 'green', label: 'small eco-friendly habits at home' },
+      { id: 'green', label: 'small eco-friendly habits at home', tags: ['nature'] },
       { id: 'friends', label: 'keeping friendships strong' },
       { id: 'weekend', label: 'making weekends restful and fun' },
-      { id: 'travel', label: 'travelling on a budget' },
-      { id: 'self-care', label: 'simple self-care that is not expensive' },
+      { id: 'travel', label: 'travelling on a budget', tags: ['travel'] },
+      { id: 'self-care', label: 'simple self-care that is not expensive', tags: ['mentalhealth'] },
       { id: 'work-life', label: 'work-life balance' },
     ],
     formats: [
@@ -140,12 +152,11 @@ export const CATEGORIES = [
       'Keep suggestions realistic, low-cost and doable for people with ordinary budgets and schedules.',
       'Money tips should be general habits only, not specific investment or product recommendations.',
     ],
-    exampleTags: 'life, productivity, motivation, home, habits',
     footer: `*${AI_NOTE}*`,
   },
   {
     id: 'technology',
-    tag: 'technology',
+    tags: ['technology', 'science'],
     label: 'new technology explained simply',
     audiences: [
       { id: 'beginners', label: 'people who are not very techy' },
@@ -156,20 +167,20 @@ export const CATEGORIES = [
       { id: 'enthusiasts', label: 'tech enthusiasts who like clear explanations' },
     ],
     themes: [
-      { id: 'ai-assistants', label: 'using AI assistants and chatbots well in daily life' },
-      { id: 'ai-safety', label: 'using AI tools safely: privacy, checking facts, and their limits' },
-      { id: 'deepfakes', label: 'how to spot deepfakes and AI-generated misinformation' },
-      { id: 'passwords', label: 'password managers and strong passwords' },
-      { id: 'passkeys', label: 'passkeys and two-factor authentication' },
-      { id: 'privacy', label: 'phone and app privacy settings worth checking' },
+      { id: 'ai-assistants', label: 'using AI assistants and chatbots well in daily life', tags: ['ai'] },
+      { id: 'ai-safety', label: 'using AI tools safely: privacy, checking facts, and their limits', tags: ['ai'] },
+      { id: 'deepfakes', label: 'how to spot deepfakes and AI-generated misinformation', tags: ['ai'] },
+      { id: 'passwords', label: 'password managers and strong passwords', tags: ['privacy'] },
+      { id: 'passkeys', label: 'passkeys and two-factor authentication', tags: ['cybersecurity'] },
+      { id: 'privacy', label: 'phone and app privacy settings worth checking', tags: ['privacy'] },
       { id: 'backups', label: 'backing up photos and files' },
       { id: 'battery', label: 'looking after phone and laptop batteries' },
-      { id: 'smart-home', label: 'smart home devices: benefits and privacy trade-offs' },
+      { id: 'smart-home', label: 'smart home devices: benefits and privacy trade-offs', tags: ['privacy'] },
       { id: 'wifi', label: 'getting better home Wi-Fi' },
-      { id: 'ev', label: 'how electric vehicles work and what owning one is like' },
-      { id: 'solar', label: 'home solar power and batteries, explained simply' },
+      { id: 'ev', label: 'how electric vehicles work and what owning one is like', tags: ['energy'] },
+      { id: 'solar', label: 'home solar power and batteries, explained simply', tags: ['energy'] },
       { id: 'cloud', label: 'what "the cloud" actually is' },
-      { id: 'online-scams', label: 'common online scams and how to avoid them' },
+      { id: 'online-scams', label: 'common online scams and how to avoid them', tags: ['cybersecurity'] },
       { id: 'wearables', label: 'smartwatches and fitness trackers: what they can and cannot do' },
       { id: 'open-source', label: 'what open-source software is and why it matters' },
       { id: 'learning', label: 'free ways to learn new tech skills online' },
@@ -184,10 +195,19 @@ export const CATEGORIES = [
       'Do NOT name specific recent product launches, version numbers, prices, release dates or company news; they go out of date and may be wrong.',
       'Mention honest downsides (privacy, cost, limits) as well as benefits. No brand promotion.',
     ],
-    exampleTags: 'tech, ai, innovation, security, gadgets',
     footer: `*${AI_NOTE}*`,
   },
 ];
+
+/**
+ * Blurt tags for a post, max 5: the category's main tag first (it becomes the post's
+ * category), then the theme's specific tag, the category's other tags, then general ones.
+ */
+export function tagsFor(topic) {
+  const { category, theme } = topic;
+  const [main, ...rest] = category.tags;
+  return [...new Set([main, ...(theme.tags ?? []), ...rest, ...GENERAL_TAGS])].slice(0, MAX_TAGS);
+}
 
 export const CATEGORY_IDS = CATEGORIES.map((c) => c.id);
 

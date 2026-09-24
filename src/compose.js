@@ -1,4 +1,4 @@
-// Turns the model's draft into a validated Blurt post body and tag list.
+// Turns the model's draft into a validated Blurt post body.
 
 const MIN_WORDS = 250;
 const MAX_WORDS = 1000;
@@ -51,11 +51,4 @@ export function composeBody(draft, { imageUrl, footer }) {
   const parts = [`![${draft.image_alt.replace(/[[\]]/g, '')}](${imageUrl})`, draft.body.trim()];
   if (footer?.trim()) parts.push('---', footer.trim());
   return `${parts.join('\n\n')}\n`;
-}
-
-/** Category first, then the model's tags; lowercase slugs, unique, max 5. */
-export function finalTags(modelTags = [], category) {
-  const slug = (t) => String(t).toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-  const tags = [category, ...modelTags].map(slug).filter(Boolean);
-  return [...new Set(tags)].slice(0, 5);
 }
