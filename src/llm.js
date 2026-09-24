@@ -10,7 +10,11 @@ async function postJson(url, headers, body) {
     signal: AbortSignal.timeout(120_000),
   });
   const text = await res.text();
-  if (!res.ok) throw new Error(`${new URL(url).host} returned ${res.status}: ${text.slice(0, 300)}`);
+  if (!res.ok) {
+    const err = new Error(`${new URL(url).host} returned ${res.status}: ${text.slice(0, 300)}`);
+    err.status = res.status;
+    throw err;
+  }
   return JSON.parse(text);
 }
 
@@ -41,9 +45,14 @@ async function groq({ apiKey, model }, prompt) {
  * Generates a validated draft. Each provider gets up to 2 attempts; the second
  * attempt is told what was wrong with the first.
  */
-export async function generateDraft(cfg, topic, { recentTitles = [], log = console.log } = {}) {
+export async function generateDraft(cfg, topic, { recentTitles = [], log = console.log, retryDelayMs = 15_000 } = {}) {
   const providers = [];
-  if (cfg.gemini.apiKey) providers.push(['gemini', (p) => gemini(cfg.gemini, p)]);
+  // Google retires model names over time, so try each configured Gemini model in order.
+  if (cfg.gemini.apiKey) {
+    for (const model of cfg.gemini.models) {
+      providers.push([`gemini (${model})`, (p) => gemini({ apiKey: cfg.gemini.apiKey, model }, p)]);
+    }
+  }
   if (cfg.groq.apiKey) providers.push(['groq', (p) => groq(cfg.groq, p)]);
 
   const errors = [];
@@ -60,6 +69,12 @@ export async function generateDraft(cfg, topic, { recentTitles = [], log = conso
       } catch (err) {
         log(`  ${name} attempt ${attempt} failed: ${err.message}`);
         errors.push(`${name}: ${err.message}`);
+        // 404 = model retired or unknown; retrying it won't help, move to the next one.
+        if (err.status === 404) break;
+        // 429 / 5xx ("high demand") are usually brief: pause before trying again.
+        if ((err.status === 429 || err.status >= 500) && retryDelayMs > 0) {
+          await new Promise((r) => setTimeout(r, retryDelayMs));
+        }
       }
     }
   }

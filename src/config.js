@@ -21,7 +21,8 @@ export function loadConfig(env = process.env) {
     },
     gemini: {
       apiKey: env.GEMINI_API_KEY?.trim(),
-      model: env.GEMINI_MODEL || 'gemini-2.5-flash',
+      // Comma-separated; tried in order. All three are on Gemini's free tier (checked 24 Sep 2026).
+      models: list(env.GEMINI_MODEL, ['gemini-3.6-flash', 'gemini-3.5-flash', 'gemini-3.1-flash-lite']),
     },
     groq: {
       apiKey: env.GROQ_API_KEY?.trim(),
