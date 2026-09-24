@@ -1,0 +1,65 @@
+name: Blurt health post
+
+# Wakes every 30 minutes; src/check-due.js decides whether a post is actually due.
+# The real gap between posts is random, 7-9 hours (see MIN/MAX_INTERVAL_HOURS).
+on:
+  schedule:
+    - cron: '13,43 * * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Post now, ignoring the schedule'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+# Never run two posting jobs at once.
+concurrency:
+  group: blurt-post
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check schedule
+        id: due
+        run: node src/check-due.js >> "$GITHUB_OUTPUT"
+
+      - name: Install
+        if: steps.due.outputs.due == 'true' || inputs.force
+        run: npm ci --omit=dev
+
+      - name: Generate and post
+        if: steps.due.outputs.due == 'true' || inputs.force
+        run: node src/run.js ${{ inputs.force && '--force' || '' }}
+        env:
+          BLURT_USERNAME: ${{ secrets.BLURT_USERNAME }}
+          BLURT_POSTING_KEY: ${{ secrets.BLURT_POSTING_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          POST_FOOTER: ${{ vars.POST_FOOTER }}
+          MIN_INTERVAL_HOURS: ${{ vars.MIN_INTERVAL_HOURS }}
+          MAX_INTERVAL_HOURS: ${{ vars.MAX_INTERVAL_HOURS }}
+
+      - name: Save schedule state
+        if: always() && (steps.due.outputs.due == 'true' || inputs.force)
+        run: |
+          if git diff --quiet -- state/state.json; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add state/state.json
+          git commit -m 'chore: update post schedule [skip ci]'
+          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done
+          exit 1

@@ -1,0 +1,20 @@
+{
+  "name": "blurt-health-poster",
+  "version": "1.0.0",
+  "description": "Posts an AI-assisted health tip with an AI image to Blurt every 7-9 hours",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "preview": "node --env-file-if-exists=.env src/run.js --preview",
+    "post": "node --env-file-if-exists=.env src/run.js",
+    "post:now": "node --env-file-if-exists=.env src/run.js --force",
+    "check": "node src/check-due.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@beblurt/dblurt": "0.17.0"
+  }
+}
