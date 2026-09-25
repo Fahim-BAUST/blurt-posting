@@ -63,6 +63,18 @@ Optional repo **variables** (same settings page, *Variables* tab):
 - `POST_CATEGORIES`: which categories to use, e.g. `health,technology` (default: all four)
 - `POST_FOOTER`: custom text for every post, or `none` (default: each category's own disclaimer)
 
+## Reliable schedule (Cloudflare trigger)
+
+GitHub's own cron is best-effort: on 24-25 Sep 2026 it ran only 4 of ~28 scheduled checks. `trigger/worker.js` is a tiny Cloudflare Worker (free plan) whose Cron Trigger starts the workflow every 30 minutes through the GitHub API. The workflow still decides whether a post is due, so extra or duplicate triggers are harmless. The GitHub cron stays as a backup.
+
+1. **Create a GitHub token:** GitHub > Settings > Developer settings > Fine-grained tokens > Generate. Repository access: only `blurt-posting`. Permissions: **Actions: Read and write** (nothing else). Pick an expiry and note it.
+2. **Create the Worker:** Cloudflare dashboard > Workers & Pages > Create > Worker > name it `blurt-post-trigger` > Deploy. Then *Edit code*, replace everything with `trigger/worker.js`, and Deploy.
+3. **Add the secret:** Worker > Settings > Variables and Secrets > Add > type **Secret**, name `GITHUB_TOKEN`, paste the token.
+4. **Add the schedule:** Worker > Settings > Trigger Events > Add > Cron Triggers > `13,43 * * * *`.
+5. **Check it:** open the Worker's URL; it should say "Blurt trigger is configured." Within 30 minutes, a run with event `workflow_dispatch` appears in the repo's Actions tab.
+
+When the token expires, runs from the Worker stop (the GitHub cron backup continues); generate a new token and replace the secret.
+
 ## Commands
 
 | Command | What it does |

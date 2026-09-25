@@ -1,0 +1,9 @@
+# Optional: deploy with the CLI instead of the dashboard.
+#   npx wrangler deploy --config trigger/wrangler.toml
+#   npx wrangler secret put GITHUB_TOKEN --config trigger/wrangler.toml
+name = "blurt-post-trigger"
+main = "worker.js"
+compatibility_date = "2026-09-01"
+
+[triggers]
+crons = ["13,43 * * * *"]
