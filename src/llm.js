@@ -22,7 +22,7 @@ async function gemini({ apiKey, model }, prompt) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`;
   const json = await postJson(url, { 'x-goog-api-key': apiKey }, {
     contents: [{ role: 'user', parts: [{ text: prompt }] }],
-    generationConfig: { temperature: 0.9, responseMimeType: 'application/json' },
+    generationConfig: { temperature: 0.9, responseMimeType: 'application/json', maxOutputTokens: 16384 },
   });
   const text = json.candidates?.[0]?.content?.parts?.map((p) => p.text ?? '').join('');
   if (!text) throw new Error(`Gemini returned no text (finishReason: ${json.candidates?.[0]?.finishReason ?? 'unknown'})`);
@@ -33,6 +33,7 @@ async function groq({ apiKey, model }, prompt) {
   const json = await postJson('https://api.groq.com/openai/v1/chat/completions', { authorization: `Bearer ${apiKey}` }, {
     model,
     temperature: 0.9,
+    max_tokens: 8192,
     response_format: { type: 'json_object' },
     messages: [{ role: 'user', content: prompt }],
   });

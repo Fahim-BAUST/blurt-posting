@@ -27,7 +27,7 @@ function mockFetch(handler) {
 const silent = () => {};
 
 test('retries with feedback when the first draft is invalid', async () => {
-  const calls = mockFetch((n) => ({ json: geminiReply(draft(n === 1 ? 'too short' : words(400))) }));
+  const calls = mockFetch((n) => ({ json: geminiReply(draft(n === 1 ? 'too short' : words(1000))) }));
   const cfg = loadConfig({ GEMINI_API_KEY: 'test' });
 
   const { draft: d, provider } = await generateDraft(cfg, pickTopic([], { categories: ['health'] }), { log: silent, retryDelayMs: 0 });
@@ -40,7 +40,7 @@ test('retries with feedback when the first draft is invalid', async () => {
 
 test('falls back to Groq when Gemini keeps failing', async () => {
   const calls = mockFetch((n, url) =>
-    url.includes('googleapis') ? { status: 429, json: { error: 'quota' } } : { json: groqReply(draft(words(400))) },
+    url.includes('googleapis') ? { status: 429, json: { error: 'quota' } } : { json: groqReply(draft(words(1000))) },
   );
   const cfg = loadConfig({ GEMINI_API_KEY: 'g', GEMINI_MODEL: 'only-model', GROQ_API_KEY: 'q' });
 
@@ -58,7 +58,7 @@ test('throws a combined error when every provider fails', async () => {
 
 test('a retired Gemini model (404) is skipped straight away for the next model', async () => {
   const calls = mockFetch((n, url) =>
-    url.includes('old-model') ? { status: 404, json: { error: 'no longer available' } } : { json: geminiReply(draft(words(400))) },
+    url.includes('old-model') ? { status: 404, json: { error: 'no longer available' } } : { json: geminiReply(draft(words(1000))) },
   );
   const cfg = loadConfig({ GEMINI_API_KEY: 'g', GEMINI_MODEL: 'old-model,new-model' });
 

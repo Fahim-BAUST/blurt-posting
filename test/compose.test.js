@@ -6,7 +6,7 @@ const words = (n) => Array.from({ length: n }, (_, i) => `word${i}`).join(' ');
 
 const goodDraft = () => ({
   title: 'Five small habits that protect your sleep',
-  body: `## Why it matters\n\n${words(400)}`,
+  body: `## Why it matters\n\n${words(1000)}`,
   image_prompt: 'A calm bedroom at dusk with soft warm light, photo',
   image_alt: 'A calm bedroom at dusk',
 });

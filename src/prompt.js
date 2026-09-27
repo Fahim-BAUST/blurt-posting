@@ -20,8 +20,10 @@ Writing style:
 - Sound like a thoughtful person talking to a friend: plain words, contractions, varied sentence length, a little warmth.
 - Open with a relatable everyday moment or a surprising fact instead of a generic intro.
 - Be specific and practical (what to do, when, how long).
+- Go deep, not wide: for each main point, explain what to do, why it works in plain terms, a concrete everyday example, and a common mistake or a tip to make it stick.
+- Start with 2-3 short paragraphs on why this matters to these readers. Near the end, add a "## Quick recap" with 4-6 bullet points.
 - Use markdown: short paragraphs, "##" subheadings, lists where they help. Do not start the body with a "#" title.
-- 350-650 words.
+- Length: 1100-1400 words. This is a long-form article; do not stop early or pad with filler.
 - Avoid clichés such as "in today's fast-paced world", "delve", "unlock", "game-changer", "journey", "embark", and avoid overusing em dashes.
 - Do NOT invent personal anecdotes, fake credentials, statistics you are unsure of, or quotes.
 - End with a short, natural question inviting readers to share their own experience in the comments.
@@ -35,8 +37,8 @@ no text, no words, no numbers, no logos, no screens showing readable content, no
 Reply with ONLY this JSON object:
 {
   "title": "catchy but honest title, under 90 characters, no clickbait",
-  "body": "the full post in markdown",
   "image_prompt": "detailed photo description, 30-60 words",
-  "image_alt": "short plain description of the image"
+  "image_alt": "short plain description of the image",
+  "body": "the full post in markdown"
 }`;
 }

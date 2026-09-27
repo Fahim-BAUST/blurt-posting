@@ -19,10 +19,10 @@ const MAX_TAGS = 5;
 const AI_NOTE = 'Written with AI assistance; image is AI-generated.';
 
 const COMMON_FORMATS = [
-  'a list of 5 practical tips, each with a short "why it helps"',
-  'myth vs fact: 4 common myths, each followed by the fact',
-  'a short Q&A answering 4 questions people often ask',
-  'a quick-start checklist people can save, with a short intro',
+  'a list of 6 practical tips, each with its own "##" section explaining how to do it, why it helps, and an everyday example',
+  'myth vs fact: 5 common myths, each with its own section explaining where the myth comes from, what is actually true, and what to do instead',
+  'a Q&A answering 6 questions people often ask, with a full, practical answer to each',
+  'a detailed checklist people can save: 8-10 items, each with a short paragraph on how and why, grouped under "##" headings',
 ];
 
 export const CATEGORIES = [
@@ -60,8 +60,8 @@ export const CATEGORIES = [
     ],
     formats: [
       ...COMMON_FORMATS,
-      'a simple one-day routine from morning to night',
-      'a "small swaps" guide: 5 easy swaps from a less healthy habit to a better one',
+      'a full one-day routine from morning to night, with the reason behind each step and how to adapt it for a busy day',
+      'a "small swaps" guide: 6 easy swaps from a less healthy habit to a better one, each explained with why it helps and how to make it stick',
     ],
     rules: [
       'Ground advice in mainstream public-health guidance (WHO, national health services).',
@@ -100,8 +100,8 @@ export const CATEGORIES = [
     ],
     formats: [
       ...COMMON_FORMATS,
-      'a plain-English explainer using one everyday analogy, then 3 practical takeaways',
-      'a "beginner mistakes" guide: 5 common mistakes and how to avoid them',
+      'an in-depth plain-English explainer: what it is, how it works (using an everyday analogy), benefits, risks or limits, and 5 practical takeaways',
+      'a "beginner mistakes" guide: 6 common mistakes, each with why people make it, what can go wrong, and how to avoid it',
     ],
     rules: [
       'This is education, not investment advice. Never tell readers to buy, sell or hold any specific coin or token.',
@@ -144,9 +144,9 @@ export const CATEGORIES = [
     ],
     formats: [
       ...COMMON_FORMATS,
-      'a simple one-day routine from morning to night',
-      'a "small swaps" guide: 5 easy swaps from a draining habit to a better one',
-      'a 7-day mini challenge, one small action per day',
+      'a full one-day routine from morning to night, with the reason behind each step and how to adapt it for a busy day',
+      'a "small swaps" guide: 6 easy swaps from a draining habit to a better one, each explained with why it helps and how to make it stick',
+      'a 7-day mini challenge: one small action per day, each day with what to do, why, and a tip if it feels hard',
     ],
     rules: [
       'Keep suggestions realistic, low-cost and doable for people with ordinary budgets and schedules.',
@@ -187,8 +187,8 @@ export const CATEGORIES = [
     ],
     formats: [
       ...COMMON_FORMATS,
-      'a plain-English explainer using one everyday analogy, then 3 practical takeaways',
-      'a step-by-step "how to get started" guide in 5 steps',
+      'an in-depth plain-English explainer: what it is, how it works (using an everyday analogy), benefits, risks or limits, and 5 practical takeaways',
+      'a step-by-step "how to get started" guide in 6-7 steps, each with clear instructions, what to watch out for, and a tip',
     ],
     rules: [
       'Explain how the technology works and how people use it, in plain words, with everyday analogies.',

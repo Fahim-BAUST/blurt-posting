@@ -1,7 +1,7 @@
 // Turns the model's draft into a validated Blurt post body.
 
-const MIN_WORDS = 250;
-const MAX_WORDS = 1000;
+const MIN_WORDS = 850;
+const MAX_WORDS = 2000;
 const MAX_TITLE = 120;
 
 /** Extracts the JSON object from a model reply (tolerates code fences / chatter). */
