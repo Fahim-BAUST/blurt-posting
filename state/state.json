@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-09-28T03:38:00.000Z",
+  "nextPostAt": "2026-09-28T12:08:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -72,6 +72,12 @@
       "topicKey": "lifestyle:students:hobbies",
       "title": "Beyond the Books: 6 Small Swaps to Find a Hobby You Actually Keep",
       "permlink": "beyond-the-books-6-small-swaps-to-find-a-hobby-you-actually-keep-muk8wmwk"
+    },
+    {
+      "at": "2026-09-28T04:01:17.145Z",
+      "topicKey": "technology:students:passkeys",
+      "title": "A Student's Guide to Passkeys and 2FA: Keep Your Accounts Safe Without the Headache",
+      "permlink": "a-student-s-guide-to-passkeys-and-2fa-keep-your-accounts-safe-without-the-headache-mukq02bu"
     }
   ]
 }
