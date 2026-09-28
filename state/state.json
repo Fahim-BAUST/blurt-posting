@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-09-28T21:09:00.000Z",
+  "nextPostAt": "2026-09-29T06:30:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -84,6 +84,12 @@
       "topicKey": "crypto:holders:defi",
       "title": "DeFi Decoded: What It Is and How to Stay Safe",
       "permlink": "defi-decoded-what-it-is-and-how-to-stay-safe-mul9bc78"
+    },
+    {
+      "at": "2026-09-28T22:03:07.843Z",
+      "topicKey": "lifestyle:parents:reading",
+      "title": "Finding Time to Read: A Realistic Plan for Busy Parents",
+      "permlink": "finding-time-to-read-a-realistic-plan-for-busy-parents-mulsnbks"
     }
   ]
 }
