@@ -2,6 +2,8 @@
 import { parseModelJson, validateDraft } from './compose.js';
 import { buildPrompt } from './prompt.js';
 
+const MAX_RETRY_WAIT_MS = 65_000;
+
 async function postJson(url, headers, body) {
   const res = await fetch(url, {
     method: 'POST',
@@ -13,6 +15,9 @@ async function postJson(url, headers, body) {
   if (!res.ok) {
     const err = new Error(`${new URL(url).host} returned ${res.status}: ${text.slice(0, 300)}`);
     err.status = res.status;
+    // Rate limits say how long to wait, in a header or in the message ("try again in 12.5s").
+    const seconds = Number(res.headers.get('retry-after')) || Number(text.match(/try again in ([\d.]+)s/i)?.[1]);
+    if (seconds > 0) err.retryAfterMs = Math.ceil(seconds * 1000);
     throw err;
   }
   return JSON.parse(text);
@@ -46,7 +51,7 @@ async function groq({ apiKey, model }, prompt) {
  * Generates a validated draft. Each provider gets up to 2 attempts; the second
  * attempt is told what was wrong with the first.
  */
-export async function generateDraft(cfg, topic, { recentTitles = [], log = console.log, retryDelayMs = 15_000 } = {}) {
+export async function generateDraft(cfg, topic, { recentTitles = [], recentOpenings = [], log = console.log, retryDelayMs = 15_000 } = {}) {
   const providers = [];
   // Google retires model names over time, so try each configured Gemini model in order.
   if (cfg.gemini.apiKey) {
@@ -65,7 +70,7 @@ export async function generateDraft(cfg, topic, { recentTitles = [], log = conso
     let feedback = [];
     for (let attempt = 1; attempt <= 2; attempt++) {
       try {
-        const draft = parseModelJson(await call(buildPrompt(topic, { recentTitles, feedback })));
+        const draft = parseModelJson(await call(buildPrompt(topic, { recentTitles, recentOpenings, feedback })));
         const problems = validateDraft(draft);
         if (problems.length === 0) return { draft, provider: name };
         log(`  ${name} attempt ${attempt} rejected: ${problems.join('; ')}`);
@@ -77,8 +82,10 @@ export async function generateDraft(cfg, topic, { recentTitles = [], log = conso
         // 404 = model retired or unknown; retrying it won't help, move to the next one.
         if (err.status === 404) break;
         // 429 / 5xx ("high demand") are usually brief: pause before trying again.
-        if ((err.status === 429 || err.status >= 500) && retryDelayMs > 0) {
-          await new Promise((r) => setTimeout(r, retryDelayMs));
+        // Groq's free tier allows ~8k tokens a minute, so a long post plus a retry can hit it.
+        if ((err.status === 429 || err.status >= 500) && retryDelayMs > 0 && attempt < 2) {
+          const wait = Math.min(err.retryAfterMs ?? retryDelayMs, MAX_RETRY_WAIT_MS);
+          await new Promise((r) => setTimeout(r, wait));
         }
       }
     }

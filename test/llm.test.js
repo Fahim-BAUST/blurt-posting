@@ -67,3 +67,17 @@ test('a retired Gemini model (404) is skipped straight away for the next model',
   assert.equal(provider, 'gemini (new-model)');
   assert.equal(calls.filter((c) => c.url.includes('old-model')).length, 1);
 });
+
+test('a rate-limited provider waits for the time the API asks for', async () => {
+  let n = 0;
+  globalThis.fetch = async () => {
+    n++;
+    if (n === 1) return new Response(JSON.stringify({ error: { message: 'Rate limit reached. Please try again in 0.05s.' } }), { status: 429 });
+    return new Response(JSON.stringify(groqReply(draft(words(1000)))), { status: 200 });
+  };
+  const cfg = loadConfig({ GROQ_API_KEY: 'q', GROQ_MODEL: 'm' });
+  const started = Date.now();
+  const { provider } = await generateDraft(cfg, pickTopic([], { categories: ['health'] }), { log: silent, retryDelayMs: 10_000 });
+  assert.equal(provider, 'groq (m)');
+  assert.ok(Date.now() - started < 5_000, 'should wait ~50ms as asked, not the 10s default');
+});

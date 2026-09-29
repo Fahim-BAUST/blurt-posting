@@ -20,6 +20,18 @@ export function allTopics(categoryIds) {
 
 const pick = (arr, random) => arr[Math.floor(random() * arr.length)];
 
+// How the first paragraph starts. Rotated so posts don't all open with the same move
+// (early posts kept starting with "Have you ever..." or "It is 1:15 PM...").
+export const OPENING_STYLES = [
+  'a direct, useful statement or tip in the very first sentence, no scene-setting',
+  'a simple, widely known fact stated in plain words, without citing any study, organisation or statistic',
+  'a common mistake people make, stated plainly',
+  'a short, specific question aimed at the reader (not "Have you ever...")',
+  'a brief, concrete everyday situation written in the third person ("Most people...", "A lot of parents...")',
+  'a clear statement of what the reader will be able to do after reading',
+  'a common belief that turns out to be only half true',
+];
+
 /**
  * Never repeats the previous post's category (when more than one is enabled);
  * among the rest, the longer a category has waited, the more likely it is picked.
@@ -64,5 +76,7 @@ export function pickTopic(history = [], { categories, random = Math.random }) {
   }
   const varied = pool.filter((t) => t.audience.id !== last?.audience && t.theme.id !== last?.theme);
   const topic = pick(varied.length ? varied : pool, random);
-  return { ...topic, format: pick(category.formats, random) };
+  const lastOpening = history.at(-1)?.opening;
+  const opening = pick(OPENING_STYLES.filter((o) => o !== lastOpening), random);
+  return { ...topic, format: pick(category.formats, random), opening };
 }

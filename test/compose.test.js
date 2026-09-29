@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parseModelJson, validateDraft, composeBody } from '../src/compose.js';
+import { parseModelJson, validateDraft, composeBody, firstSentence } from '../src/compose.js';
 
 const words = (n) => Array.from({ length: n }, (_, i) => `word${i}`).join(' ');
 
@@ -84,4 +84,52 @@ test('composeBody puts the image first and the footer last', () => {
 test('composeBody omits the footer when it is empty', () => {
   const body = composeBody(goodDraft(), { imageUrl: 'https://img.example/x.jpg', footer: '' });
   assert.ok(!body.includes('---'));
+});
+
+test('validateDraft rejects AI-cliché words in title or body', () => {
+  for (const [field, text] of [
+    ['title', 'Blockchain Unlocked: What Beginners Should Know'],
+    ['title', 'DeFi Decoded for Beginners'],
+    ['title', 'Demystifying the Cloud'],
+    ['body', 'Here is how to navigate the settings menu.'],
+    ['body', 'Let us delve into the details.'],
+    ['body', 'It works seamlessly across devices.'],
+  ]) {
+    const d = goodDraft();
+    d[field] = field === 'body' ? `${d.body}\n\n${text}` : text;
+    assert.ok(validateDraft(d).some((p) => /cliché/.test(p)), text);
+  }
+});
+
+test('validateDraft rejects formulaic openings', () => {
+  for (const opening of ['Have you ever wondered why you feel tired?', 'Imagine waking up rested.', 'It is 7:15 AM and the alarm rings.', "You know that feeling when your back aches?"]) {
+    const d = goodDraft();
+    d.body = `${opening}\n\n${d.body}`;
+    assert.ok(validateDraft(d).some((p) => /opening/.test(p)), opening);
+  }
+});
+
+test('firstSentence skips images and headings', () => {
+  assert.equal(firstSentence('![x](y.jpg)\n\n## Intro\n\nSleep matters. A lot.'), 'Sleep matters.');
+});
+
+test('composeBody adds related posts before the footer', () => {
+  const body = composeBody(goodDraft(), {
+    imageUrl: 'https://img.example/x.jpg',
+    footer: 'FOOTER',
+    related: [{ title: 'Older [post]', url: 'https://blurt.blog/health/@a/older' }],
+  });
+  const relatedAt = body.indexOf('## You might also like');
+  assert.ok(relatedAt > 0 && relatedAt < body.indexOf('FOOTER'));
+  assert.ok(body.includes('- [Older post](https://blurt.blog/health/@a/older)'));
+});
+
+test('composeBody leaves out the related section when there is nothing to link', () => {
+  assert.ok(!composeBody(goodDraft(), { imageUrl: 'u', footer: '', related: [] }).includes('You might also like'));
+});
+
+test('validateDraft allows "navigation" as a plain noun', () => {
+  const d = goodDraft();
+  d.body += '\n\nMost EVs show charging stops in the navigation screen.';
+  assert.deepEqual(validateDraft(d), []);
 });

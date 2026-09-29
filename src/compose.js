@@ -25,6 +25,21 @@ function hasHype(text) {
 }
 const PRICE_PREDICTION = /\b(will|could|is going to|set to) (easily )?(reach|hit|surpass|climb to|pump to) \$\s?\d/i;
 
+// Words and openings that make a post read as AI-written. The prompt asks the model to
+// avoid them, but it doesn't reliably listen, so drafts are checked and rewritten.
+export const CLICHES = /\b(unlock\w*|decod(ed|ing)|demystif\w*|delv(e|es|ed|ing)|navigat(e|es|ed|ing)|seamless\w*|game[- ]?changer\w*|embark\w*|journey|elevate\w*|empower\w*|harness\w*|realm|tapestry|ever[- ]evolving|fast[- ]paced|dive (in|into)|deep dive|look no further|buckle up|in today'?s (world|digital age)|at the end of the day|without further ado)\b/gi;
+const FORMULAIC_OPENING = /^(have you ever|do you ever|imagine|picture this|it'?s \d|it is \d|you know (that|the) feeling|we'?ve all|we have all|in today'?s)/i;
+
+/** First sentence of the article text, skipping the image and headings. */
+export function firstSentence(markdown) {
+  const text = markdown
+    .split('\n')
+    .filter((line) => line.trim() && !/^\s*(!\[|#)/.test(line))
+    .join(' ')
+    .trim();
+  return (text.match(/^.*?[.!?](?=\s|$)/)?.[0] ?? text).slice(0, 200);
+}
+
 const wordCount = (s) => s.trim().split(/\s+/).filter(Boolean).length;
 
 /** Returns a list of problems; an empty list means the draft is usable. */
@@ -43,12 +58,21 @@ export function validateDraft(d) {
     if (/\b\d+(\.\d+)?\s?(mg|mcg|µg|iu)\b/i.test(d.body)) problems.push('body contains medication/supplement dosage');
     if (hasHype(`${d.title}\n${d.body}`)) problems.push('contains investment hype or promised returns');
     if (PRICE_PREDICTION.test(d.body)) problems.push('contains a price prediction');
+    const opening = firstSentence(d.body);
+    if (FORMULAIC_OPENING.test(opening)) problems.push(`formulaic opening ("${opening.slice(0, 40)}..."); start a different way`);
   }
+  const cliches = [...new Set([...`${d?.title ?? ''}\n${d?.body ?? ''}`.matchAll(CLICHES)].map((m) => m[0].toLowerCase()))];
+  if (cliches.length) problems.push(`uses AI-cliché words: ${cliches.join(', ')} (rephrase in plain words)`);
   return problems;
 }
 
-export function composeBody(draft, { imageUrl, footer }) {
-  const parts = [`![${draft.image_alt.replace(/[[\]]/g, '')}](${imageUrl})`, draft.body.trim()];
+const linkText = (t) => t.replace(/[[\]]/g, '');
+
+export function composeBody(draft, { imageUrl, footer, related = [] }) {
+  const parts = [`![${linkText(draft.image_alt)}](${imageUrl})`, draft.body.trim()];
+  if (related.length) {
+    parts.push(`## You might also like\n\n${related.map((r) => `- [${linkText(r.title)}](${r.url})`).join('\n')}`);
+  }
   if (footer?.trim()) parts.push('---', footer.trim());
   return `${parts.join('\n\n')}\n`;
 }

@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { CATEGORIES, ACTIVE_TAGS, getCategory, tagsFor } from '../src/categories.js';
-import { allTopics, pickTopic, parseTopicKey } from '../src/topics.js';
+import { allTopics, pickTopic, parseTopicKey, OPENING_STYLES } from '../src/topics.js';
 
 const ALL = CATEGORIES.map((c) => c.id);
 
@@ -103,4 +103,13 @@ test('theme-specific tags are included', () => {
   assert.deepEqual(tagsFor(ai), ['technology', 'ai', 'science', 'blurt', 'blog']);
   const [food] = allTopics(['health']).filter((t) => t.theme.id === 'breakfast');
   assert.deepEqual(tagsFor(food), ['health', 'food', 'wellness', 'life', 'blurt']);
+});
+
+test('pickTopic assigns an opening style and avoids repeating the last one', () => {
+  const last = pickTopic([], { categories: ALL }).opening;
+  assert.ok(OPENING_STYLES.includes(last));
+  for (let i = 0; i < 30; i++) {
+    const t = pickTopic([{ topicKey: 'health:kids:sleep', opening: last }], { categories: ALL });
+    assert.notEqual(t.opening, last);
+  }
 });
