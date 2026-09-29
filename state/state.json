@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-09-29T15:14:00.000Z",
+  "nextPostAt": "2026-09-30T00:26:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -96,6 +96,14 @@
       "topicKey": "crypto:beginners:blockchain-basics",
       "title": "Blockchain Unlocked: Separating Common Myths from Reality",
       "permlink": "blockchain-unlocked-separating-common-myths-from-reality-mumbw34m"
+    },
+    {
+      "at": "2026-09-29T15:48:36.899Z",
+      "topicKey": "health:young-adults:veg-fruit",
+      "title": "Adding More Plants to Your Plate: A Simple Guide for Busy Adults",
+      "permlink": "adding-more-plants-to-your-plate-a-simple-guide-for-busy-adults-mumupjgi",
+      "opening": "a clear statement of what the reader will be able to do after reading",
+      "firstSentence": "By the end of this post, you will be able to incorporate more fruits and vegetables into your daily routine without spending hours in the kitchen or breaking your budget."
     }
   ]
 }
