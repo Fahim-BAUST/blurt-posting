@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-09-30T16:10:00.000Z",
+  "nextPostAt": "2026-10-01T00:12:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -120,6 +120,14 @@
       "permlink": "open-source-software-for-small-businesses-what-it-is-and-why-it-matters-munvluk9",
       "opening": "a common belief that turns out to be only half true",
       "firstSentence": "Many small business owners think open‑source software is only for hobbyists and geeks, and that it’s risky to rely on something they can’t buy."
+    },
+    {
+      "at": "2026-09-30T17:02:29.484Z",
+      "topicKey": "crypto:skeptics:defi",
+      "title": "Six Common DeFi Missteps and How to Protect Your Hard-Earned Money",
+      "permlink": "six-common-defi-missteps-and-how-to-protect-your-hard-earned-money-muocsdr6",
+      "opening": "a short, specific question aimed at the reader (not \"Have you ever...\")",
+      "firstSentence": "Are you holding back from trying decentralized finance because the whole concept feels like an unregulated digital casino?"
     }
   ]
 }
