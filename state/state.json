@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-09-30T08:05:00.000Z",
+  "nextPostAt": "2026-09-30T16:10:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -112,6 +112,14 @@
       "permlink": "gentle-eco-swaps-to-make-your-home-greener-at-your-own-pace-munegl31",
       "opening": "a simple, widely known fact stated in plain words, without citing any study, organisation or statistic",
       "firstSentence": "Vegetable peels, coffee grounds, and tea bags make up a huge chunk of the garbage generated in a typical kitchen every week."
+    },
+    {
+      "at": "2026-09-30T09:01:30.299Z",
+      "topicKey": "technology:small-business:open-source",
+      "title": "Open‑Source Software for Small Businesses: What It Is and Why It Matters",
+      "permlink": "open-source-software-for-small-businesses-what-it-is-and-why-it-matters-munvluk9",
+      "opening": "a common belief that turns out to be only half true",
+      "firstSentence": "Many small business owners think open‑source software is only for hobbyists and geeks, and that it’s risky to rely on something they can’t buy."
     }
   ]
 }
