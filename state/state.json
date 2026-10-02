@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-02T19:54:00.000Z",
+  "nextPostAt": "2026-10-03T03:05:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -168,6 +168,14 @@
       "permlink": "building-a-morning-routine-that-does-not-feel-like-a-second-job-muquv7vr",
       "opening": "a common mistake people make, stated plainly",
       "firstSentence": "Setting your alarm for 5:00 AM to squeeze in a workout, a journal session, and a healthy breakfast usually backfires by Thursday."
+    },
+    {
+      "at": "2026-10-02T20:02:28.683Z",
+      "topicKey": "crypto:beginners:stablecoins",
+      "title": "Understanding Stablecoins: How They Work and Why They Matter",
+      "permlink": "understanding-stablecoins-how-they-work-and-why-they-matter-mure3kge",
+      "opening": "a direct, useful statement or tip in the very first sentence, no scene-setting",
+      "firstSentence": "Keep your digital funds stable by understanding the mechanisms behind the coins that aim to track the value of the dollar."
     }
   ]
 }
