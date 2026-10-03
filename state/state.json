@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-03T03:05:00.000Z",
+  "nextPostAt": "2026-10-03T11:24:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -176,6 +176,14 @@
       "permlink": "understanding-stablecoins-how-they-work-and-why-they-matter-mure3kge",
       "opening": "a direct, useful statement or tip in the very first sentence, no scene-setting",
       "firstSentence": "Keep your digital funds stable by understanding the mechanisms behind the coins that aim to track the value of the dollar."
+    },
+    {
+      "at": "2026-10-03T04:02:19.165Z",
+      "topicKey": "technology:enthusiasts:learning",
+      "title": "How to Build Serious Tech Skills Online Without Spending a Dime",
+      "permlink": "how-to-build-serious-tech-skills-online-without-spending-a-dime-murv8nic",
+      "opening": "a short, specific question aimed at the reader (not \"Have you ever...\")",
+      "firstSentence": "Which programming language or software tool has been sitting on your mental to-do list for months because you assume learning it requires an expensive bootcamp?"
     }
   ]
 }
