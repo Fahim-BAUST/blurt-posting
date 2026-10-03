@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-03T19:59:00.000Z",
+  "nextPostAt": "2026-10-04T03:02:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -192,6 +192,14 @@
       "permlink": "staying-focused-when-you-are-finally-in-charge-of-your-time-muscdjl7",
       "opening": "a direct, useful statement or tip in the very first sentence, no scene-setting",
       "firstSentence": "Breaking a big task into a tiny, five-minute starter step is the most reliable way to bypass the discomfort that leads to putting things off."
+    },
+    {
+      "at": "2026-10-03T20:02:32.653Z",
+      "topicKey": "crypto:holders:wallet-security",
+      "title": "Simple Habits to Keep Your Small Crypto Stash Safe",
+      "permlink": "simple-habits-to-keep-your-small-crypto-stash-safe-mustjicq",
+      "opening": "a common mistake people make, stated plainly",
+      "firstSentence": "Leaving your secret recovery phrase in a screenshot on your phone or saved in a digital notepad is the easiest way to lose your crypto."
     }
   ]
 }
