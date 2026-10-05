@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-05T05:04:00.000Z",
+  "nextPostAt": "2026-10-05T14:15:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -224,6 +224,14 @@
       "permlink": "making-family-accounts-safer-with-passkeys-and-simple-double-checks-muud33g4",
       "opening": "a simple, widely known fact stated in plain words, without citing any study, organisation or statistic",
       "firstSentence": "Children learn to lock the front door behind them long before they ever get their first set of house keys."
+    },
+    {
+      "at": "2026-10-05T06:02:34.101Z",
+      "topicKey": "lifestyle:remote:declutter",
+      "title": "Tidy Home, Productive Work: A Checklist for Remote Workers",
+      "permlink": "tidy-home-productive-work-a-checklist-for-remote-workers-muuuezqp",
+      "opening": "a short, specific question aimed at the reader (not \"Have you ever...\")",
+      "firstSentence": "Is your home office turning into a storage closet?"
     }
   ]
 }
