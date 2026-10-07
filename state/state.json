@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-07T16:05:00.000Z",
+  "nextPostAt": "2026-10-08T01:00:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -280,6 +280,14 @@
       "permlink": "protecting-your-crypto-seed-phrase-six-mistakes-to-avoid-muxtlm46",
       "opening": "a common mistake people make, stated plainly",
       "firstSentence": "Many people store their crypto recovery phrase by taking a screenshot on their smartphone, thinking it is just another photo in their gallery."
+    },
+    {
+      "at": "2026-10-07T17:05:01.813Z",
+      "topicKey": "technology:parents:cloud",
+      "title": "What The Cloud Actually Means For Your Family",
+      "permlink": "what-the-cloud-actually-means-for-your-family-muycymro",
+      "opening": "a common belief that turns out to be only half true",
+      "firstSentence": "People often talk about the cloud as if it is a magical, airy space floating somewhere above our heads."
     }
   ]
 }
