@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-07T07:33:00.000Z",
+  "nextPostAt": "2026-10-07T16:05:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -272,6 +272,14 @@
       "permlink": "how-to-spend-a-full-day-exploring-a-new-city-on-a-student-budget-muxcifgx",
       "opening": "a direct, useful statement or tip in the very first sentence, no scene-setting",
       "firstSentence": "Booking your accommodation within walking distance of a city's free public parks and historic quarters saves you more money than any discount code ever will."
+    },
+    {
+      "at": "2026-10-07T08:03:01.848Z",
+      "topicKey": "crypto:beginners:seed-phrase",
+      "title": "Protecting Your Crypto Seed Phrase: Six Mistakes to Avoid",
+      "permlink": "protecting-your-crypto-seed-phrase-six-mistakes-to-avoid-muxtlm46",
+      "opening": "a common mistake people make, stated plainly",
+      "firstSentence": "Many people store their crypto recovery phrase by taking a screenshot on their smartphone, thinking it is just another photo in their gallery."
     }
   ]
 }
