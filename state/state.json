@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-08T01:00:00.000Z",
+  "nextPostAt": "2026-10-08T09:32:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -288,6 +288,14 @@
       "permlink": "what-the-cloud-actually-means-for-your-family-muycymro",
       "opening": "a common belief that turns out to be only half true",
       "firstSentence": "People often talk about the cloud as if it is a magical, airy space floating somewhere above our heads."
+    },
+    {
+      "at": "2026-10-08T01:03:12.189Z",
+      "topicKey": "crypto:holders:hot-vs-cold",
+      "title": "Finding the Safest Home for Your Growing Crypto Stash",
+      "permlink": "finding-the-safest-home-for-your-growing-crypto-stash-muyu1ka2",
+      "opening": "a short, specific question aimed at the reader (not \"Have you ever...\")",
+      "firstSentence": "Are you still keeping your entire crypto balance on the phone app you downloaded when you first bought some coins?"
     }
   ]
 }
