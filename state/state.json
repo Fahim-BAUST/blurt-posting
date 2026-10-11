@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-11T14:14:00.000Z",
+  "nextPostAt": "2026-10-11T23:55:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -368,6 +368,14 @@
       "permlink": "rethinking-breakfast-in-your-forties-and-fifties-with-five-common-myths-mv3h6st0",
       "opening": "a brief, concrete everyday situation written in the third person (\"Most people...\", \"A lot of parents...\")",
       "firstSentence": "Most adults heading into their fifties notice that the morning routines that kept them energized ten years ago suddenly leave them dragging by mid-morning."
+    },
+    {
+      "at": "2026-10-11T15:02:57.372Z",
+      "topicKey": "technology:students:passwords",
+      "title": "A Practical Student Guide to Master Passwords and Secure Logins",
+      "permlink": "a-practical-student-guide-to-master-passwords-and-secure-logins-mv3yd1rt",
+      "opening": "a short, specific question aimed at the reader (not \"Have you ever...\")",
+      "firstSentence": "How many times this semester have you hit the \"Forgot Password\" button while rushing to upload an assignment five minutes before midnight?"
     }
   ]
 }
