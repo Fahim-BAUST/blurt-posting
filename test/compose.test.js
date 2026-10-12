@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parseModelJson, validateDraft, composeBody, firstSentence } from '../src/compose.js';
+import { parseModelJson, validateDraft, composeBody, firstSentence, extraImagePlans } from '../src/compose.js';
 
 const words = (n) => Array.from({ length: n }, (_, i) => `word${i}`).join(' ');
 
@@ -132,4 +132,58 @@ test('validateDraft allows "navigation" as a plain noun', () => {
   const d = goodDraft();
   d.body += '\n\nMost EVs show charging stops in the navigation screen.';
   assert.deepEqual(validateDraft(d), []);
+});
+
+const sectioned = () => ({
+  ...goodDraft(),
+  body: ['Intro paragraph.', '## One', 'a', '## Two', 'b', '## Three', 'c', '## Four', 'd', '## Five', 'e', '## Quick recap', '- done'].join('\n\n'),
+});
+
+test('extraImagePlans keeps only complete entries, up to the limit', () => {
+  const d = goodDraft();
+  d.extra_images = [{ prompt: 'p1', alt: 'a1' }, { prompt: '', alt: 'a2' }, 'junk', { prompt: 'p3', alt: 'a3' }, { prompt: 'p4', alt: 'a4' }];
+  assert.deepEqual(extraImagePlans(d, 2), [{ prompt: 'p1', alt: 'a1' }, { prompt: 'p3', alt: 'a3' }]);
+  assert.deepEqual(extraImagePlans(d, 0), []);
+  assert.deepEqual(extraImagePlans(goodDraft(), 2), []);
+});
+
+test('composeBody spreads extra images above later sections, never the first or the recap', () => {
+  const body = composeBody(sectioned(), {
+    imageUrl: 'cover.jpg',
+    images: [{ url: 'two.jpg', alt: 'Second' }, { url: 'three.jpg', alt: 'Third' }],
+    footer: '',
+  });
+  assert.ok(body.startsWith('![A calm bedroom at dusk](cover.jpg)'));
+  assert.ok(body.includes('![Second](two.jpg)\n\n## Two'));
+  assert.ok(body.includes('![Third](three.jpg)\n\n## Four'));
+  assert.equal(body.match(/!\[/g).length, 3);
+});
+
+test('composeBody appends extra images to the article when there are no sections to place them in', () => {
+  const body = composeBody(goodDraft(), {
+    imageUrl: 'cover.jpg',
+    images: [{ url: 'two.jpg', alt: 'Second' }],
+    footer: 'FOOTER',
+    related: [{ title: 'Older', url: 'https://blurt.blog/x' }],
+  });
+  const at = body.indexOf('![Second](two.jpg)');
+  assert.ok(at > 0 && at < body.indexOf('## You might also like'));
+});
+
+test('validateDraft does not require extra images', () => {
+  const d = goodDraft();
+  d.extra_images = 'not a list';
+  assert.deepEqual(validateDraft(d), []);
+});
+
+test('composeBody puts an extra image above the section the model named, ignoring numbering and case', () => {
+  const d = sectioned();
+  d.body = d.body.replace('## Five', '## 5. Keep a Health Log!');
+  const body = composeBody(d, {
+    imageUrl: 'cover.jpg',
+    images: [{ url: 'log.jpg', alt: 'Log', section: 'keep a health log' }, { url: 'other.jpg', alt: 'Other', section: 'no such heading' }],
+    footer: '',
+  });
+  assert.ok(body.includes('![Log](log.jpg)\n\n## 5. Keep a Health Log!'));
+  assert.ok(body.includes('![Other](other.jpg)\n\n## Two'));
 });

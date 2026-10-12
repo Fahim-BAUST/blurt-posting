@@ -67,9 +67,47 @@ export function validateDraft(d) {
 }
 
 const linkText = (t) => t.replace(/[[\]]/g, '');
+const imageMd = (alt, url) => `![${linkText(alt)}](${url})`;
 
-export function composeBody(draft, { imageUrl, footer, related = [] }) {
-  const parts = [`![${linkText(draft.image_alt)}](${imageUrl})`, draft.body.trim()];
+/** The optional in-article images the model described: complete entries only, at most `max`. */
+export function extraImagePlans(draft, max) {
+  if (!Array.isArray(draft?.extra_images) || max < 1) return [];
+  const ok = (v) => typeof v === 'string' && v.trim() !== '';
+  return draft.extra_images.filter((img) => ok(img?.prompt) && ok(img?.alt)).slice(0, max);
+}
+
+// "## 2. Keep a Health Log!" -> "keep a health log", so the model's section names match loosely.
+const headingKey = (s) =>
+  s.replace(/^#+\s*/, '').replace(/^\d+[.)]?\s*/, '').replace(/[^\p{L}\p{N}]+/gu, ' ').trim().toLowerCase();
+
+// Puts each image just above a "##" section: the one the model said it illustrates, or else
+// spread through the article. The first section sits right under the cover image and the
+// recap is a summary, so neither gets one. Images that don't fit go at the end of the article.
+function placeImages(body, images) {
+  const lines = body.split('\n');
+  const slots = lines
+    .flatMap((line, i) => (/^##\s/.test(line) && !/^##\s+quick recap/i.test(line) ? [i] : []))
+    .slice(1);
+  const placed = new Map();
+  const unmatched = [];
+  for (const img of images) {
+    const key = typeof img.section === 'string' ? headingKey(img.section) : '';
+    const i = key ? slots.find((j) => !placed.has(j) && headingKey(lines[j]).includes(key)) : undefined;
+    if (i === undefined) unmatched.push(img);
+    else placed.set(i, img);
+  }
+  const free = slots.filter((j) => !placed.has(j));
+  const n = Math.min(unmatched.length, free.length);
+  unmatched.slice(0, n).forEach((img, k) => placed.set(free[Math.floor((k * free.length) / n)], img));
+  for (const i of [...placed.keys()].sort((a, b) => b - a)) {
+    lines.splice(i, 0, imageMd(placed.get(i).alt, placed.get(i).url), '');
+  }
+  return [lines.join('\n'), ...unmatched.slice(n).map((img) => imageMd(img.alt, img.url))].join('\n\n');
+}
+
+/** `images` are the extra in-article images ({ url, alt, section? }); the cover image goes on top. */
+export function composeBody(draft, { imageUrl, images = [], footer, related = [] }) {
+  const parts = [imageMd(draft.image_alt, imageUrl), placeImages(draft.body.trim(), images)];
   if (related.length) {
     parts.push(`## You might also like\n\n${related.map((r) => `- [${linkText(r.title)}](${r.url})`).join('\n')}`);
   }

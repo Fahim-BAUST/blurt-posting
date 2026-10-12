@@ -16,7 +16,7 @@ export const ACTIVE_TAGS = [
 const GENERAL_TAGS = ['blurt', 'blog'];
 const MAX_TAGS = 5;
 
-const AI_NOTE = 'Written with AI assistance; image is AI-generated.';
+const AI_NOTE = 'Written with AI assistance; images are AI-generated.';
 
 const COMMON_FORMATS = [
   'a list of 6 practical tips, each with its own "##" section explaining how to do it, why it helps, and an everyday example',

@@ -35,14 +35,20 @@ Writing style:
 Rules for ${category.label} posts:
 ${category.rules.map((r) => `- ${r}`).join('\n')}
 
-Also write an image prompt for a realistic, bright, uplifting photo that fits the post:
-no text, no words, no numbers, no logos, no screens showing readable content, no watermarks, natural diverse people or objects.
+Also describe three realistic, bright, uplifting photos: a cover photo for the whole post, and two more
+that each illustrate a different later "##" section (not the first section, not the recap, not the cover scene again).
+For every photo: no text, no words, no numbers, no logos, no watermarks, natural diverse people or objects.
+Leave out anything the image model would fill with fake writing: signs, posters, charts, calendars, books, labels, documents and screens.
 
 Reply with ONLY this JSON object:
 {
   "title": "catchy but honest title, under 90 characters, no clickbait",
-  "image_prompt": "detailed photo description, 30-60 words",
-  "image_alt": "short plain description of the image",
+  "image_prompt": "detailed cover photo description, 30-60 words",
+  "image_alt": "short plain description of the cover photo",
+  "extra_images": [
+    { "section": "the exact ## heading this photo illustrates", "prompt": "detailed photo description, 30-60 words", "alt": "short plain description" },
+    { "section": "a different later ## heading", "prompt": "detailed photo description, 30-60 words", "alt": "short plain description" }
+  ],
   "body": "the full post in markdown"
 }`;
 }

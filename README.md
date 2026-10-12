@@ -1,6 +1,6 @@
 # Blurt Auto Poster
 
-Posts an AI-assisted article with an AI-generated image to [Blurt](https://blurt.blog), rotating between **health**, **crypto**, **daily lifestyle** and **technology**. There's a random gap of **7 to 9 hours** between posts, about 3 a day. It runs free on GitHub Actions, so you don't need a server.
+Posts an AI-assisted article with up to three AI-generated images to [Blurt](https://blurt.blog), rotating between **health**, **crypto**, **daily lifestyle** and **technology**. There's a random gap of **7 to 9 hours** between posts, about 3 a day. It runs free on GitHub Actions, so you don't need a server.
 
 | Category | Blurt tag | Themes | Examples |
 |---|---|---|---|
@@ -20,7 +20,7 @@ GitHub Actions (every 30 min) -> check-due.js: is it time yet?
    | yes
    v
 pick topic -> Gemini writes post (Groq fallback) -> quality checks (retry with feedback)
-   -> FLUX image (Cloudflare; Pollinations fallback) -> upload to Blurt image host
+   -> FLUX cover + up to 2 in-article images (Cloudflare; Pollinations fallback) -> upload to Blurt image host
    -> broadcast post with posting key -> pick next time (now + random 7-9h)
    -> commit state/state.json
 ```
@@ -37,7 +37,7 @@ Safety nets:
 |---|---|
 | GitHub Actions | Unlimited on public repos. 2,000 min/month on private repos. This job uses about 1,600 min/month. |
 | Google Gemini API | Free tier. Note: Google may use free-tier prompts to improve its products. |
-| Cloudflare Workers AI | Daily free allowance, enough for a few images a day |
+| Cloudflare Workers AI | Daily free allowance, enough for 3 images per post at this schedule |
 | Pollinations.ai | Free, no key needed (adds a small watermark) |
 | Blurt | **Not free per post.** Each post pays a small fee in BLURT: 0.05 flat plus 0.2 per KB, so about 1 BLURT per post. Keep some BLURT in the account. |
 
@@ -52,7 +52,7 @@ Safety nets:
    ```sh
    npm install
    cp .env.example .env   # fill in GEMINI_API_KEY at minimum
-   npm run preview        # writes preview/post.md + preview/image.jpg
+   npm run preview        # writes preview/post.md + preview/image*.jpg
    ```
 3. **Push this folder to a GitHub repository.**
 4. **Add secrets.** In the repo, go to *Settings > Secrets and variables > Actions* and add these secrets: `BLURT_USERNAME`, `BLURT_POSTING_KEY`, `GEMINI_API_KEY`, and optionally `CF_ACCOUNT_ID`, `CF_API_TOKEN`, `GROQ_API_KEY`.
@@ -62,6 +62,7 @@ Optional repo **variables** (same settings page, *Variables* tab):
 - `MIN_INTERVAL_HOURS` / `MAX_INTERVAL_HOURS` (default 7 / 9)
 - `POST_CATEGORIES`: which categories to use, e.g. `health,technology` (default: all four)
 - `POST_FOOTER`: custom text for every post, or `none` (default: each category's own disclaimer)
+- `IMAGES_PER_POST`: `1` to `3` (default 3). The first is the cover; the others go inside the article and are skipped if they fail
 
 ## Reliable schedule (Cloudflare trigger)
 
@@ -79,7 +80,7 @@ When the token expires, runs from the Worker stop (the GitHub cron backup contin
 
 | Command | What it does |
 |---|---|
-| `npm run preview` | Generates a post and image into `preview/`, posts nothing |
+| `npm run preview` | Generates a post and its images into `preview/`, posts nothing |
 | `npm run post` | Posts only if the schedule says it's due |
 | `npm run post:now` | Posts immediately |
 | `npm test` | Runs unit tests |

@@ -53,6 +53,7 @@ jobs:
           POST_CATEGORIES: ${{ vars.POST_CATEGORIES }}
           MIN_INTERVAL_HOURS: ${{ vars.MIN_INTERVAL_HOURS }}
           MAX_INTERVAL_HOURS: ${{ vars.MAX_INTERVAL_HOURS }}
+          IMAGES_PER_POST: ${{ vars.IMAGES_PER_POST }}
 
       - name: Save schedule state
         if: always() && (steps.due.outputs.due == 'true' || inputs.force)

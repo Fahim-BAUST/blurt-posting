@@ -1,15 +1,15 @@
 // Entry point.
 //   node src/run.js            post if due (what the scheduler runs)
 //   node src/run.js --force    post now, ignoring the schedule and double-post guard
-//   node src/run.js --preview  generate text + image into ./preview, post nothing
+//   node src/run.js --preview  generate text + images into ./preview, post nothing
 import { mkdir, writeFile } from 'node:fs/promises';
 import { loadConfig, assertConfig } from './config.js';
 import { isDue, pickNextPostAt, recentlyPostedOnChain } from './schedule.js';
 import { loadState, saveState } from './state.js';
 import { pickTopic } from './topics.js';
 import { generateDraft } from './llm.js';
-import { generateImage, sniffImageType } from './image.js';
-import { composeBody, firstSentence } from './compose.js';
+import { generateImage, generateExtraImages, sniffImageType } from './image.js';
+import { composeBody, extraImagePlans, firstSentence } from './compose.js';
 import { tagsFor } from './categories.js';
 import { pickRelated } from './related.js';
 import { fetchRecentPosts, recentContext } from './recent.js';
@@ -70,33 +70,54 @@ async function main() {
   const { draft, provider: textProvider } = await generateDraft(cfg, topic, { recentTitles, recentOpenings });
   console.log(`Text (${textProvider}): "${draft.title}"`);
 
-  const { image, provider: imageProvider } = await generateImage(cfg, draft.image_prompt);
-  const { ext, mime } = sniffImageType(image);
-  console.log(`Image (${imageProvider}): ${Math.round(image.length / 1024)} KB ${ext}`);
+  // The cover image is required; extra in-article images are skipped if they fail.
+  const cover = await generateImage(cfg, draft.image_prompt);
+  const extras = await generateExtraImages(cfg, extraImagePlans(draft, cfg.imagesPerPost - 1));
+  const images = [{ ...cover, alt: draft.image_alt }, ...extras].map((img) => ({ ...img, ...sniffImageType(img.image) }));
+  for (const img of images) console.log(`Image (${img.provider}): ${Math.round(img.image.length / 1024)} KB ${img.ext}`);
 
   const tags = tagsFor(topic);
 
   if (preview) {
     await mkdir('preview', { recursive: true });
-    await writeFile(`preview/image.${ext}`, image);
-    const body = composeBody(draft, { imageUrl: `image.${ext}`, footer, related });
+    const names = images.map((img, i) => `image${i ? `-${i + 1}` : ''}.${img.ext}`);
+    for (const [i, img] of images.entries()) await writeFile(`preview/${names[i]}`, img.image);
+    const body = composeBody(draft, { imageUrl: names[0], images: images.slice(1).map((img, i) => ({ ...img, url: names[i + 1] })), footer, related });
     await writeFile('preview/post.md', `# ${draft.title}\n\nTags: ${tags.join(', ')}\n\n${body}`);
-    console.log('Preview written to preview/post.md and preview/image.' + ext);
+    console.log(`Preview written to preview/post.md and ${names.map((n) => `preview/${n}`).join(', ')}`);
     return;
   }
 
-  const imageUrl = await blurt.uploadImage({
-    uploadUrl: cfg.blurt.uploadUrl,
-    username: cfg.blurt.username,
-    postingKey: cfg.blurt.postingKey,
-    image,
-    filename: `health-tip.${ext}`,
-    mime,
-  });
+  const upload = (img, n) =>
+    blurt.uploadImage({
+      uploadUrl: cfg.blurt.uploadUrl,
+      username: cfg.blurt.username,
+      postingKey: cfg.blurt.postingKey,
+      image: img.image,
+      filename: `${tags[0]}-${n}.${img.ext}`,
+      mime: img.mime,
+    });
+  const imageUrl = await upload(images[0], 1);
   console.log(`Uploaded image: ${imageUrl}`);
+  const uploaded = [];
+  for (const [i, img] of images.slice(1).entries()) {
+    try {
+      uploaded.push({ url: await upload(img, i + 2), alt: img.alt, section: img.section });
+      console.log(`Uploaded image: ${uploaded.at(-1).url}`);
+    } catch (err) {
+      console.log(`Extra image upload skipped: ${err.message}`);
+    }
+  }
 
-  const body = composeBody(draft, { imageUrl, footer, related });
-  const op = blurt.buildPost({ username: cfg.blurt.username, title: draft.title, body, tags, imageUrl, app: cfg.app });
+  const body = composeBody(draft, { imageUrl, images: uploaded, footer, related });
+  const op = blurt.buildPost({
+    username: cfg.blurt.username,
+    title: draft.title,
+    body,
+    tags,
+    imageUrls: [imageUrl, ...uploaded.map((img) => img.url)],
+    app: cfg.app,
+  });
   const confirmation = await blurt.publish(client, op, cfg.blurt.postingKey);
   const permlink = op[1].permlink;
   console.log(`Posted: https://blurt.blog/${tags[0]}/@${cfg.blurt.username}/${permlink} (tx ${confirmation.id})`);

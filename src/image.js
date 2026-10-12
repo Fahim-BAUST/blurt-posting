@@ -47,6 +47,19 @@ export async function generateImage(cfg, prompt, { log = console.log } = {}) {
   throw new Error(`Could not generate an image:\n${errors.join('\n')}`);
 }
 
+/**
+ * Generates the optional in-article images together; any that fail are logged and skipped.
+ * Returns each plan ({ prompt, alt, section? }) with its { image, provider } added.
+ */
+export async function generateExtraImages(cfg, plans, { log = console.log } = {}) {
+  const results = await Promise.allSettled(plans.map((p) => generateImage(cfg, p.prompt, { log })));
+  return results.flatMap((r, i) => {
+    if (r.status === 'fulfilled') return [{ ...plans[i], ...r.value }];
+    log(`Extra image ${i + 1} skipped: ${r.reason.message.split('\n').join(' | ')}`);
+    return [];
+  });
+}
+
 /** Detects JPEG/PNG/WebP so the upload gets the right filename and type. */
 export function sniffImageType(buf) {
   if (buf[0] === 0xff && buf[1] === 0xd8) return { ext: 'jpg', mime: 'image/jpeg' };

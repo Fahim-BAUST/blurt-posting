@@ -7,6 +7,10 @@ const DEFAULT_RPC = ['https://rpc.blurt.blog', 'https://rpc.beblurt.com', 'https
 
 const list = (v, fallback) => (v ? v.split(',').map((s) => s.trim()).filter(Boolean) : fallback);
 const num = (v, fallback) => (v === undefined || v === '' ? fallback : Number(v));
+const imageCount = (v) => {
+  const n = Math.trunc(num(v, 3));
+  return Number.isNaN(n) ? 3 : Math.min(3, Math.max(1, n));
+};
 
 export function loadConfig(env = process.env) {
   return {
@@ -30,6 +34,8 @@ export function loadConfig(env = process.env) {
       accountId: env.CF_ACCOUNT_ID?.trim(),
       apiToken: env.CF_API_TOKEN?.trim(),
     },
+    // 1 = cover image only; 2-3 add images inside the article (each costs one more image generation).
+    imagesPerPost: imageCount(env.IMAGES_PER_POST),
     // Which categories to rotate through, e.g. "health,crypto". Default: all of them.
     categories: list(env.POST_CATEGORIES, CATEGORY_IDS).map((id) => getCategory(id.toLowerCase()).id),
     schedule: {

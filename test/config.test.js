@@ -29,3 +29,11 @@ test('POST_CATEGORIES picks a subset and rejects typos', () => {
   assert.deepEqual(loadConfig({ POST_CATEGORIES: 'Crypto, health' }).categories, ['crypto', 'health']);
   assert.throws(() => loadConfig({ POST_CATEGORIES: 'health,sportz' }), /Unknown category "sportz"/);
 });
+
+test('IMAGES_PER_POST defaults to 3 and is kept between 1 and 3', () => {
+  assert.equal(loadConfig({ IMAGES_PER_POST: '' }).imagesPerPost, 3);
+  assert.equal(loadConfig({ IMAGES_PER_POST: '1' }).imagesPerPost, 1);
+  assert.equal(loadConfig({ IMAGES_PER_POST: '9' }).imagesPerPost, 3);
+  assert.equal(loadConfig({ IMAGES_PER_POST: '0' }).imagesPerPost, 1);
+  assert.equal(loadConfig({ IMAGES_PER_POST: 'lots' }).imagesPerPost, 3);
+});

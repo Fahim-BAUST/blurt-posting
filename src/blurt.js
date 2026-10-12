@@ -44,7 +44,8 @@ export async function uploadImage({ uploadUrl, username, postingKey, image, file
   return json.url;
 }
 
-export function buildPost({ username, title, body, tags, imageUrl, app }) {
+/** `imageUrls[0]` is the cover; Blurt uses the first entry as the thumbnail. */
+export function buildPost({ username, title, body, tags, imageUrls, app }) {
   return buildPostOperation({
     author: username,
     title,
@@ -55,7 +56,7 @@ export function buildPost({ username, title, body, tags, imageUrl, app }) {
     maxTags: 5,
     // Short time-based suffix keeps permlinks unique even if a title repeats.
     permlinkSuffix: Date.now().toString(36),
-    extra: { image: [imageUrl] },
+    extra: { image: imageUrls },
   });
 }
 
