@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-11T23:55:00.000Z",
+  "nextPostAt": "2026-10-12T07:40:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -376,6 +376,14 @@
       "permlink": "a-practical-student-guide-to-master-passwords-and-secure-logins-mv3yd1rt",
       "opening": "a short, specific question aimed at the reader (not \"Have you ever...\")",
       "firstSentence": "How many times this semester have you hit the \"Forgot Password\" button while rushing to upload an assignment five minutes before midnight?"
+    },
+    {
+      "at": "2026-10-12T00:02:28.258Z",
+      "topicKey": "lifestyle:everyone:green",
+      "title": "A Practical One Day Guide to Lighter Living at Home",
+      "permlink": "a-practical-one-day-guide-to-lighter-living-at-home-mv4hmv7r",
+      "opening": "a simple, widely known fact stated in plain words, without citing any study, organisation or statistic",
+      "firstSentence": "Waste that goes into household trash cans eventually ends up buried underground or drifting through waterways."
     }
   ]
 }
