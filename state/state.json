@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-14T10:08:00.000Z",
+  "nextPostAt": "2026-10-14T19:20:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -432,6 +432,14 @@
       "permlink": "balanced-moves-stretching-and-flexibility-tips-for-kids-and-parents-mv7gt6au",
       "opening": "a brief, concrete everyday situation written in the third person (\"Most people...\", \"A lot of parents...\")",
       "firstSentence": "Most parents notice their kids bouncing off the couch after a screen‑filled afternoon, legs wiggling, eyes bright but bodies tight."
+    },
+    {
+      "at": "2026-10-14T11:02:21.720Z",
+      "topicKey": "crypto:skeptics:fees",
+      "title": "Why Crypto Transactions Have Fees: A Straightforward Look",
+      "permlink": "why-crypto-transactions-have-fees-a-straightforward-look-mv80374v",
+      "opening": "a direct, useful statement or tip in the very first sentence, no scene-setting",
+      "firstSentence": "Understanding crypto transaction fees helps you decide when it makes sense to move your digital assets and when it is better to wait."
     }
   ]
 }
