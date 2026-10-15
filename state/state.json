@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-15T21:12:00.000Z",
+  "nextPostAt": "2026-10-16T06:17:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -464,6 +464,14 @@
       "permlink": "a-beginner-guide-to-crypto-volatility-and-managing-risk-wisely-mv9jgorn",
       "opening": "a brief, concrete everyday situation written in the third person (\"Most people...\", \"A lot of parents...\")",
       "firstSentence": "A lot of people set aside a little extra cash at the end of the month, hoping to see it grow quietly over time."
+    },
+    {
+      "at": "2026-10-15T21:19:59.933Z",
+      "topicKey": "technology:students:cloud",
+      "title": "What Is the Cloud and Why Does It Matter for Your Files?",
+      "permlink": "what-is-the-cloud-and-why-does-it-matter-for-your-files-mva1lc6r",
+      "opening": "a short, specific question aimed at the reader (not \"Have you ever...\")",
+      "firstSentence": "Where do your photos and essays actually go when you save them to your drive?"
     }
   ]
 }
