@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-15T12:48:00.000Z",
+  "nextPostAt": "2026-10-15T21:12:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -456,6 +456,14 @@
       "permlink": "electric-cars-a-practical-look-for-your-daily-drives-mv90kr4h",
       "opening": "a simple, widely known fact stated in plain words, without citing any study, organisation or statistic",
       "firstSentence": "Cars require fuel to move and get us where we need to go."
+    },
+    {
+      "at": "2026-10-15T12:52:29.964Z",
+      "topicKey": "crypto:beginners:volatility",
+      "title": "A Beginner Guide to Crypto Volatility and Managing Risk Wisely",
+      "permlink": "a-beginner-guide-to-crypto-volatility-and-managing-risk-wisely-mv9jgorn",
+      "opening": "a brief, concrete everyday situation written in the third person (\"Most people...\", \"A lot of parents...\")",
+      "firstSentence": "A lot of people set aside a little extra cash at the end of the month, hoping to see it grow quietly over time."
     }
   ]
 }
