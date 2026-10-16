@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-16T06:17:00.000Z",
+  "nextPostAt": "2026-10-16T14:27:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -472,6 +472,14 @@
       "permlink": "what-is-the-cloud-and-why-does-it-matter-for-your-files-mva1lc6r",
       "opening": "a short, specific question aimed at the reader (not \"Have you ever...\")",
       "firstSentence": "Where do your photos and essays actually go when you save them to your drive?"
+    },
+    {
+      "at": "2026-10-16T07:02:01.762Z",
+      "topicKey": "crypto:skeptics:seed-phrase",
+      "title": "Your Seed Phrase: A Practical Guide to Keeping It Safe",
+      "permlink": "your-seed-phrase-a-practical-guide-to-keeping-it-safe-mvamdtu5",
+      "opening": "a direct, useful statement or tip in the very first sentence, no scene-setting",
+      "firstSentence": "Your seed phrase is the only way to recover your digital wallet if your computer breaks or you lose access to your device."
     }
   ]
 }
