@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-16T14:27:00.000Z",
+  "nextPostAt": "2026-10-16T23:31:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -480,6 +480,14 @@
       "permlink": "your-seed-phrase-a-practical-guide-to-keeping-it-safe-mvamdtu5",
       "opening": "a direct, useful statement or tip in the very first sentence, no scene-setting",
       "firstSentence": "Your seed phrase is the only way to recover your digital wallet if your computer breaks or you lose access to your device."
+    },
+    {
+      "at": "2026-10-16T15:02:33.191Z",
+      "topicKey": "lifestyle:everyone:declutter",
+      "title": "One-Day Declutter Routine: Tiny Steps for a Tidy Home",
+      "permlink": "one-day-declutter-routine-tiny-steps-for-a-tidy-home-mvb3jsfm",
+      "opening": "a brief, concrete everyday situation written in the third person (\"Most people...\", \"A lot of parents...\")",
+      "firstSentence": "Most people find that a cluttered home quietly steals their energy, making it harder to focus on work or relax."
     }
   ]
 }
