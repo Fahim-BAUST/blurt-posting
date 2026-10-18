@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-18T15:47:00.000Z",
+  "nextPostAt": "2026-10-19T00:05:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -528,6 +528,14 @@
       "permlink": "a-friendly-look-at-defi-banking-without-the-bank-mvdjfxh2",
       "opening": "a brief, concrete everyday situation written in the third person (\"Most people...\", \"A lot of parents...\")",
       "firstSentence": "Most people rely on a bank to store their savings, move money, or take out a loan."
+    },
+    {
+      "at": "2026-10-18T16:01:12.865Z",
+      "topicKey": "technology:students:ai-safety",
+      "title": "Smart Ways to Use AI for Schoolwork Without Risking Your Privacy or Grades",
+      "permlink": "smart-ways-to-use-ai-for-schoolwork-without-risking-your-privacy-or-grades-mve0ixky",
+      "opening": "a direct, useful statement or tip in the very first sentence, no scene-setting",
+      "firstSentence": "Treating an AI chat tool like a helpful study assistant rather than an all-knowing oracle keeps your personal data safe and your homework accurate."
     }
   ]
 }
