@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-22T20:36:00.000Z",
+  "nextPostAt": "2026-10-23T04:12:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -624,6 +624,14 @@
       "permlink": "how-to-make-your-phone-and-laptop-batteries-last-longer-mvjjwh4j",
       "opening": "a simple, widely known fact stated in plain words, without citing any study, organisation or statistic",
       "firstSentence": "Batteries eventually lose their ability to hold a charge, but how you treat them today changes how fast they wear out."
+    },
+    {
+      "at": "2026-10-22T21:02:53.581Z",
+      "topicKey": "crypto:holders:blockchain-basics",
+      "title": "A Friendly Look at How Blockchain Actually Works",
+      "permlink": "a-friendly-look-at-how-blockchain-actually-works-mvk12aj3",
+      "opening": "a brief, concrete everyday situation written in the third person (\"Most people...\", \"A lot of parents...\")",
+      "firstSentence": "Most people treat their banking apps like black boxes."
     }
   ]
 }
