@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-23T04:12:00.000Z",
+  "nextPostAt": "2026-10-23T12:57:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -632,6 +632,14 @@
       "permlink": "a-friendly-look-at-how-blockchain-actually-works-mvk12aj3",
       "opening": "a brief, concrete everyday situation written in the third person (\"Most people...\", \"A lot of parents...\")",
       "firstSentence": "Most people treat their banking apps like black boxes."
+    },
+    {
+      "at": "2026-10-23T05:02:21.077Z",
+      "topicKey": "technology:enthusiasts:open-source",
+      "title": "A Plain English Guide to Open Source Software and Getting Started",
+      "permlink": "a-plain-english-guide-to-open-source-software-and-getting-started-mvki6vys",
+      "opening": "a clear statement of what the reader will be able to do after reading",
+      "firstSentence": "By the time you finish this guide, you will know exactly how open-source software operates, how to choose reliable free applications, and how to safely test them on your own computer."
     }
   ]
 }
