@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-24T14:04:00.000Z",
+  "nextPostAt": "2026-10-24T23:07:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -664,6 +664,14 @@
       "permlink": "how-social-blockchain-rewards-really-work-for-beginners-mvm1xn4d",
       "opening": "a common belief that turns out to be only half true",
       "firstSentence": "People often assume that earning tokens on a social blockchain is just like getting paid a traditional hourly wage for writing articles."
+    },
+    {
+      "at": "2026-10-24T14:53:26.141Z",
+      "topicKey": "technology:seniors:passwords",
+      "title": "Keeping Your Online Accounts Safe Without the Headache",
+      "permlink": "keeping-your-online-accounts-safe-without-the-headache-mvmiqvrh",
+      "opening": "a simple, widely known fact stated in plain words, without citing any study, organisation or statistic",
+      "firstSentence": "It is much easier to lose a key than it is to replace a lock."
     }
   ]
 }
