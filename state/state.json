@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-24T06:48:00.000Z",
+  "nextPostAt": "2026-10-24T14:04:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -656,6 +656,14 @@
       "permlink": "how-to-use-ai-assistants-for-everyday-tasks-without-the-confusion-mvlimov9",
       "opening": "a direct, useful statement or tip in the very first sentence, no scene-setting",
       "firstSentence": "Treating an AI chatbot like a helpful, slightly overly eager assistant rather than an all-knowing oracle is the single best way to get good results."
+    },
+    {
+      "at": "2026-10-24T07:02:48.190Z",
+      "topicKey": "crypto:beginners:blurt-earning",
+      "title": "How Social Blockchain Rewards Really Work for Beginners",
+      "permlink": "how-social-blockchain-rewards-really-work-for-beginners-mvm1xn4d",
+      "opening": "a common belief that turns out to be only half true",
+      "firstSentence": "People often assume that earning tokens on a social blockchain is just like getting paid a traditional hourly wage for writing articles."
     }
   ]
 }
