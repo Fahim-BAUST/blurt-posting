@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-25T07:34:00.000Z",
+  "nextPostAt": "2026-10-25T19:50:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -680,6 +680,14 @@
       "permlink": "a-seven-day-mini-challenge-for-a-less-hurried-morning-routine-mvn2eqjy",
       "opening": "a common belief that turns out to be only half true",
       "firstSentence": "Setting your alarm earlier is always treated as the golden secret to a peaceful morning, but extra time alone does not stop you from feeling rushed."
+    },
+    {
+      "at": "2026-10-25T11:19:12.769Z",
+      "topicKey": "crypto:skeptics:exchanges",
+      "title": "Five Exchange Security Myths and How to Keep Your Crypto Safe",
+      "permlink": "five-exchange-security-myths-and-how-to-keep-your-crypto-safe-mvnqj8ni",
+      "opening": "a short, specific question aimed at the reader (not \"Have you ever...\")",
+      "firstSentence": "What actually happens to your digital assets if a major online crypto platform encounters technical issues or goes offline tomorrow?"
     }
   ]
 }
