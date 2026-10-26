@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-26T05:29:00.000Z",
+  "nextPostAt": "2026-10-26T14:33:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -696,6 +696,14 @@
       "permlink": "a-simple-daily-routine-to-prevent-screen-eye-strain-for-teenagers-mvobste8",
       "opening": "a common belief that turns out to be only half true",
       "firstSentence": "Blue light glasses are often advertised as a complete shield against screen fatigue, but that belief turns out to be only half true."
+    },
+    {
+      "at": "2026-10-26T06:59:35.894Z",
+      "topicKey": "technology:enthusiasts:wifi",
+      "title": "A Practical Checklist for Stronger Home Wireless Signals",
+      "permlink": "a-practical-checklist-for-stronger-home-wireless-signals-mvowp86e",
+      "opening": "a brief, concrete everyday situation written in the third person (\"Most people...\", \"A lot of parents...\")",
+      "firstSentence": "A lot of households place their internet gateway inside a wooden television cabinet or behind a couch, assuming invisible radio waves pass through solid objects without losing strength."
     }
   ]
 }
