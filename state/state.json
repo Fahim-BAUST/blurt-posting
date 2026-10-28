@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-28T18:39:00.000Z",
+  "nextPostAt": "2026-10-29T06:31:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -744,6 +744,14 @@
       "permlink": "how-the-cloud-works-and-simple-ways-to-use-it-every-day-mvs1kzlt",
       "opening": "a brief, concrete everyday situation written in the third person (\"Most people...\", \"A lot of parents...\")",
       "firstSentence": "Many older adults set up a new tablet or smartphone and eventually see a pop-up message asking if they would like to save their family photos to the cloud."
+    },
+    {
+      "at": "2026-10-28T21:54:46.780Z",
+      "topicKey": "health:midlife:social",
+      "title": "Five Myths About Midlife Friendship That Keep Us From Staying Connected",
+      "permlink": "five-myths-about-midlife-friendship-that-keep-us-from-staying-connected-mvsnk4d6",
+      "opening": "a short, specific question aimed at the reader (not \"Have you ever...\")",
+      "firstSentence": "When was the last time you reached out to a friend without having a specific operational reason like coordinating schedules or asking for a favor?"
     }
   ]
 }
