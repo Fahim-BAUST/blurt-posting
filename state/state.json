@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-28T07:26:00.000Z",
+  "nextPostAt": "2026-10-28T18:39:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -736,6 +736,14 @@
       "permlink": "what-nfts-actually-are-and-six-common-misunderstandings-to-avoid-mvrcp5tf",
       "opening": "a direct, useful statement or tip in the very first sentence, no scene-setting",
       "firstSentence": "Understanding how a digital receipt connects to a file on the internet is the fastest way to make sense of non-fungible tokens without getting confused by technical jargon."
+    },
+    {
+      "at": "2026-10-28T11:39:34.998Z",
+      "topicKey": "technology:seniors:cloud",
+      "title": "How the Cloud Works and Simple Ways to Use It Every Day",
+      "permlink": "how-the-cloud-works-and-simple-ways-to-use-it-every-day-mvs1kzlt",
+      "opening": "a brief, concrete everyday situation written in the third person (\"Most people...\", \"A lot of parents...\")",
+      "firstSentence": "Many older adults set up a new tablet or smartphone and eventually see a pop-up message asking if they would like to save their family photos to the cloud."
     }
   ]
 }
