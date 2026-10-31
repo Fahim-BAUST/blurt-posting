@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-10-31T16:58:00.000Z",
+  "nextPostAt": "2026-11-01T03:11:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -792,6 +792,14 @@
       "permlink": "low-cost-self-care-habits-that-waste-student-money-and-energy-mvw5xi85",
       "opening": "a short, specific question aimed at the reader (not \"Have you ever...\")",
       "firstSentence": "How many times have you skipped taking care of yourself this semester simply because your bank account was running low?"
+    },
+    {
+      "at": "2026-10-31T19:32:53.991Z",
+      "topicKey": "crypto:skeptics:blockchain-basics",
+      "title": "Six Blockchain Basics Beginners Get Wrong and How to Understand Them",
+      "permlink": "six-blockchain-basics-beginners-get-wrong-and-how-to-understand-them-mvwst8ia",
+      "opening": "a simple, widely known fact stated in plain words, without citing any study, organisation or statistic",
+      "firstSentence": "Paper notebooks have kept track of shared lists, family spending, and community records for generations."
     }
   ]
 }
