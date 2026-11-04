@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-11-04T04:01:00.000Z",
+  "nextPostAt": "2026-11-04T14:56:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -848,6 +848,14 @@
       "permlink": "keeping-your-crypto-earnings-safe-online-mw130oa6",
       "opening": "a simple, widely known fact stated in plain words, without citing any study, organisation or statistic",
       "firstSentence": "Locks keep doors shut."
+    },
+    {
+      "at": "2026-11-04T06:22:46.681Z",
+      "topicKey": "technology:beginners:passwords",
+      "title": "A Simple Way to Manage Your Online Passwords",
+      "permlink": "a-simple-way-to-manage-your-online-passwords-mw1qcjhh",
+      "opening": "a brief, concrete everyday situation written in the third person (\"Most people...\", \"A lot of parents...\")",
+      "firstSentence": "Most people reuse the same three passwords for every single website they visit because trying to remember fifty different combinations feels impossible."
     }
   ]
 }
