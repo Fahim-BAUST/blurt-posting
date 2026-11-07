@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-11-07T10:49:00.000Z",
+  "nextPostAt": "2026-11-08T00:34:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -904,6 +904,14 @@
       "permlink": "why-you-pay-transaction-fees-when-sending-crypto-mw5twjhe",
       "opening": "a clear statement of what the reader will be able to do after reading",
       "firstSentence": "By the time you finish reading this, you will be able to explain exactly why transaction fees exist, how they change based on network activity, and how to choose the right moment to move your funds wi"
+    },
+    {
+      "at": "2026-11-07T16:24:46.655Z",
+      "topicKey": "technology:enthusiasts:privacy",
+      "title": "A Clear Guide to Phone Privacy Settings That Keep Your Data Safe",
+      "permlink": "a-clear-guide-to-phone-privacy-settings-that-keep-your-data-safe-mw6m69sl",
+      "opening": "a simple, widely known fact stated in plain words, without citing any study, organisation or statistic",
+      "firstSentence": "Smartphones run background programs that continuously record information about your daily routines."
     }
   ]
 }
