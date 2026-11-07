@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-11-07T02:11:00.000Z",
+  "nextPostAt": "2026-11-07T10:49:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -896,6 +896,14 @@
       "permlink": "how-home-solar-panels-and-batteries-work-together-in-plain-english-mw5b3tvp",
       "opening": "a common belief that turns out to be only half true",
       "firstSentence": "Solar panels give you unlimited free power the second sunlight touches your roof, but that turns out to be only half true."
+    },
+    {
+      "at": "2026-11-07T03:13:23.268Z",
+      "topicKey": "crypto:holders:fees",
+      "title": "Why You Pay Transaction Fees When Sending Crypto",
+      "permlink": "why-you-pay-transaction-fees-when-sending-crypto-mw5twjhe",
+      "opening": "a clear statement of what the reader will be able to do after reading",
+      "firstSentence": "By the time you finish reading this, you will be able to explain exactly why transaction fees exist, how they change based on network activity, and how to choose the right moment to move your funds wi"
     }
   ]
 }
