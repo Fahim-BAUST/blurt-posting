@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-11-10T03:18:00.000Z",
+  "nextPostAt": "2026-11-10T18:56:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -952,6 +952,14 @@
       "permlink": "keeping-your-home-office-finances-balanced-mw9p29ak",
       "opening": "a clear statement of what the reader will be able to do after reading",
       "firstSentence": "By the time you finish reading this, you will be able to organize your home-based finances using six practical habits that stop small expenses from turning into big monthly headaches."
+    },
+    {
+      "at": "2026-11-10T10:28:34.987Z",
+      "topicKey": "crypto:beginners:keys",
+      "title": "A Beginner's Guide to Crypto Keys and Safe Self-Custody",
+      "permlink": "a-beginner-s-guide-to-crypto-keys-and-safe-self-custody-mwajrqvc",
+      "opening": "a brief, concrete everyday situation written in the third person (\"Most people...\", \"A lot of parents...\")",
+      "firstSentence": "Most people who step into the world of cryptocurrency start by setting up an account on a popular exchange platform."
     }
   ]
 }
