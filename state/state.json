@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-11-11T19:22:00.000Z",
+  "nextPostAt": "2026-11-12T09:18:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -976,6 +976,14 @@
       "permlink": "sorting-fact-from-fiction-in-everyday-teen-hygiene-mwbzz5bk",
       "opening": "a short, specific question aimed at the reader (not \"Have you ever...\")",
       "firstSentence": "How often do you rinse your hands under lukewarm water for two seconds and call it a day?"
+    },
+    {
+      "at": "2026-11-12T00:59:40.809Z",
+      "topicKey": "technology:enthusiasts:ai-safety",
+      "title": "A Practical Checklist for Staying Safe While Using Daily AI Tools",
+      "permlink": "a-practical-checklist-for-staying-safe-while-using-daily-ai-tools-mwcubuk6",
+      "opening": "a common mistake people make, stated plainly",
+      "firstSentence": "Pasting sensitive work documents, private medical notes, or personal addresses into a free chatbot prompt box is the most frequent privacy oversight people commit today."
     }
   ]
 }
