@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-11-13T00:44:00.000Z",
+  "nextPostAt": "2026-11-13T11:22:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -992,6 +992,14 @@
       "permlink": "a-simple-daily-walking-routine-for-busy-people-in-their-twenties-and-thirties-mwdsswx3",
       "opening": "a clear statement of what the reader will be able to do after reading",
       "firstSentence": "Once you finish this article, you will have a clear, realistic plan to fit consistent movement into your day from sunrise to bedtime, even when your schedule is packed."
+    },
+    {
+      "at": "2026-11-13T02:57:23.925Z",
+      "topicKey": "crypto:creators:hot-vs-cold",
+      "title": "A Creator Security Checklist for Managing Hot and Cold Crypto Wallets",
+      "permlink": "a-creator-security-checklist-for-managing-hot-and-cold-crypto-wallets-mwedz38p",
+      "opening": "a common mistake people make, stated plainly",
+      "firstSentence": "Leaving earned tokens inside an unsecured browser extension or a phone app without an offline backup is one of the quickest ways for creators to lose their hard-earned rewards."
     }
   ]
 }
