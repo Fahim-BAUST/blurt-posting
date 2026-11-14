@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-11-14T02:51:00.000Z",
+  "nextPostAt": "2026-11-14T14:51:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -1008,6 +1008,14 @@
       "permlink": "setting-healthy-phone-boundaries-when-your-home-is-also-your-office-mwfbb9mr",
       "opening": "a common belief that turns out to be only half true",
       "firstSentence": "Checking your phone for five minutes between work tasks is often described as a harmless mental reset, but that is only half true."
+    },
+    {
+      "at": "2026-11-14T06:14:36.019Z",
+      "topicKey": "technology:students:deepfakes",
+      "title": "A Student's Step-by-Step Guide to Spotting Deepfakes and Fake Media",
+      "permlink": "a-student-s-step-by-step-guide-to-spotting-deepfakes-and-fake-media-mwg0gjfw",
+      "opening": "a simple, widely known fact stated in plain words, without citing any study, organisation or statistic",
+      "firstSentence": "Digital photos and video clips can be edited using computers just as easily as text documents."
     }
   ]
 }
