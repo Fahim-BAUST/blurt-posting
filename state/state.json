@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-11-15T10:13:00.000Z",
+  "nextPostAt": "2026-11-16T00:20:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -1032,6 +1032,14 @@
       "permlink": "a-plain-english-guide-to-tracking-your-crypto-for-taxes-and-peace-of-mind-mwh85k88",
       "opening": "a direct, useful statement or tip in the very first sentence, no scene-setting",
       "firstSentence": "Exporting your crypto transaction history into a spreadsheet at the end of every month prevents a massive headache when tax season arrives."
+    },
+    {
+      "at": "2026-11-15T17:04:38.205Z",
+      "topicKey": "technology:parents:privacy",
+      "title": "Five Phone Privacy Myths Parents Can Stop Believing Today",
+      "permlink": "five-phone-privacy-myths-parents-can-stop-believing-today-mwi34cb7",
+      "opening": "a simple, widely known fact stated in plain words, without citing any study, organisation or statistic",
+      "firstSentence": "Every mobile phone uses small software permissions to control which tools can see your location, read your contacts, or turn on your microphone."
     }
   ]
 }
