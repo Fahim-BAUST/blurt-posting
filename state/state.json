@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-11-16T00:20:00.000Z",
+  "nextPostAt": "2026-11-16T09:46:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -1040,6 +1040,14 @@
       "permlink": "five-phone-privacy-myths-parents-can-stop-believing-today-mwi34cb7",
       "opening": "a simple, widely known fact stated in plain words, without citing any study, organisation or statistic",
       "firstSentence": "Every mobile phone uses small software permissions to control which tools can see your location, read your contacts, or turn on your microphone."
+    },
+    {
+      "at": "2026-11-16T01:59:02.008Z",
+      "topicKey": "crypto:creators:stablecoins",
+      "title": "6 Stablecoin Mistakes Every Crypto Blogger Should Avoid",
+      "permlink": "6-stablecoin-mistakes-every-crypto-blogger-should-avoid-mwim7kvn",
+      "opening": "a common belief that turns out to be only half true",
+      "firstSentence": "Holding digital tokens tied to the US dollar feels like keeping cash in a high-tech savings account, but that safety net is only half real."
     }
   ]
 }
