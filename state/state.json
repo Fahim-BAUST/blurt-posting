@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-11-17T04:00:00.000Z",
+  "nextPostAt": "2026-11-17T20:34:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -1056,6 +1056,14 @@
       "permlink": "smart-snacking-strategies-for-steady-energy-in-your-40s-and-50s-mwjokm6y",
       "opening": "a clear statement of what the reader will be able to do after reading",
       "firstSentence": "After reading this guide, you will know how to pick mid-day snacks that keep your energy steady, protect your heart, and keep hunger away until dinner."
+    },
+    {
+      "at": "2026-11-17T11:51:11.548Z",
+      "topicKey": "technology:enthusiasts:deepfakes",
+      "title": "How to Spot AI-Generated Media and Avoid Being Fooled",
+      "permlink": "how-to-spot-ai-generated-media-and-avoid-being-fooled-mwkmsyou",
+      "opening": "a short, specific question aimed at the reader (not \"Have you ever...\")",
+      "firstSentence": "Can you tell the difference between a real video of a friend and a digital copy built by a machine?"
     }
   ]
 }
