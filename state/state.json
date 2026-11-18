@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-11-18T04:10:00.000Z",
+  "nextPostAt": "2026-11-18T20:04:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -1072,6 +1072,14 @@
       "permlink": "maintaining-friendships-when-you-are-swamped-with-work-mwl63m6u",
       "opening": "a clear statement of what the reader will be able to do after reading",
       "firstSentence": "By the end of this post, you will know how to adjust your social habits to keep your closest friendships alive without feeling like you are adding another massive project to your work calendar."
+    },
+    {
+      "at": "2026-11-18T11:33:13.260Z",
+      "topicKey": "crypto:holders:volatility",
+      "title": "How to Handle Crypto Price Swings Without Stressing Your Monthly Budget",
+      "permlink": "how-to-handle-crypto-price-swings-without-stressing-your-monthly-budget-mwm1lojc",
+      "opening": "a short, specific question aimed at the reader (not \"Have you ever...\")",
+      "firstSentence": "How often do you check the total value of your crypto wallet during a normal week?"
     }
   ]
 }
