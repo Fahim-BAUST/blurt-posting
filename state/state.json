@@ -1,5 +1,5 @@
 {
-  "nextPostAt": "2026-11-22T22:54:00.000Z",
+  "nextPostAt": "2026-11-23T09:09:00.000Z",
   "history": [
     {
       "at": "2026-09-24T11:37:51.774Z",
@@ -1144,6 +1144,14 @@
       "permlink": "a-week-to-reclaim-your-attention-without-ditching-tech-forever-mws0c28g",
       "opening": "a direct, useful statement or tip in the very first sentence, no scene-setting",
       "firstSentence": "Your brain was not built to process hundreds of notifications, rapid-fire social media updates, and endless scrolling every single hour."
+    },
+    {
+      "at": "2026-11-23T01:58:07.532Z",
+      "topicKey": "crypto:creators:wallet-security",
+      "title": "A Plain-English Guide to Keeping Your Creator Crypto Wallet Safe",
+      "permlink": "a-plain-english-guide-to-keeping-your-creator-crypto-wallet-safe-mwsm9dv6",
+      "opening": "a common belief that turns out to be only half true",
+      "firstSentence": "Many people believe that putting crypto into a digital wallet transfers their tokens inside their phone or browser app like coins dropping into a piggy bank, but that is only half true."
     }
   ]
 }
