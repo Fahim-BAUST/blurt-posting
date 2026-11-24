@@ -1,12 +1,6 @@
 {
-  "nextPostAt": "2026-11-24T05:36:00.000Z",
+  "nextPostAt": "2026-11-24T15:11:00.000Z",
   "history": [
-    {
-      "at": "2026-09-24T11:37:51.774Z",
-      "topicKey": "midlife:hydration",
-      "title": "Five simple ways to drink more water as we get older",
-      "permlink": "five-simple-ways-to-drink-more-water-as-we-get-older-mufgjt49"
-    },
     {
       "at": "2026-09-24T11:49:28.053Z",
       "topicKey": "family:screens",
@@ -1168,6 +1162,14 @@
       "permlink": "a-simple-checklist-for-keeping-track-of-your-crypto-activity-mwttpphh",
       "opening": "a short, specific question aimed at the reader (not \"Have you ever...\")",
       "firstSentence": "Did you buy a tiny fraction of a coin months ago and completely forget to write down the details?"
+    },
+    {
+      "at": "2026-11-24T06:23:49.507Z",
+      "topicKey": "technology:students:smart-home",
+      "title": "Smart Home Gadgets for Students: Convenience, Savings, and Privacy to Watch",
+      "permlink": "smart-home-gadgets-for-students-convenience-savings-and-privacy-to-watch-mwub6xgc",
+      "opening": "a simple, widely known fact stated in plain words, without citing any study, organisation or statistic",
+      "firstSentence": "It’s easy to leave a light on when you walk out of a room."
     }
   ]
 }
