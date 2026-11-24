@@ -1,12 +1,6 @@
 {
-  "nextPostAt": "2026-11-24T15:11:00.000Z",
+  "nextPostAt": "2026-11-25T01:53:00.000Z",
   "history": [
-    {
-      "at": "2026-09-24T11:49:28.053Z",
-      "topicKey": "family:screens",
-      "title": "Eyes on the Screen: Simple Truths for Family Eye Health",
-      "permlink": "eyes-on-the-screen-simple-truths-for-family-eye-health-mufgyq1q"
-    },
     {
       "at": "2026-09-24T20:00:08.143Z",
       "topicKey": "lifestyle:professionals:budget",
@@ -1170,6 +1164,14 @@
       "permlink": "smart-home-gadgets-for-students-convenience-savings-and-privacy-to-watch-mwub6xgc",
       "opening": "a simple, widely known fact stated in plain words, without citing any study, organisation or statistic",
       "firstSentence": "It’s easy to leave a light on when you walk out of a room."
+    },
+    {
+      "at": "2026-11-24T18:18:06.283Z",
+      "topicKey": "crypto:beginners:dyor",
+      "title": "How to Research Crypto Projects Wisely: Six Common Beginner Mistakes to Avoid",
+      "permlink": "how-to-research-crypto-projects-wisely-six-common-beginner-mistakes-to-avoid-mwv0phu0",
+      "opening": "a clear statement of what the reader will be able to do after reading",
+      "firstSentence": "By the time you finish reading this guide, you will be able to evaluate any new crypto project using six simple checks before you decide to spend a single minute or dollar on it."
     }
   ]
 }
