@@ -1,12 +1,6 @@
 {
-  "nextPostAt": "2026-11-25T01:53:00.000Z",
+  "nextPostAt": "2026-11-25T10:16:00.000Z",
   "history": [
-    {
-      "at": "2026-09-24T20:00:08.143Z",
-      "topicKey": "lifestyle:professionals:budget",
-      "title": "A 7-Day Plan to Get Your Finances Back on Track",
-      "permlink": "a-7-day-plan-to-get-your-finances-back-on-track-mufyhpze"
-    },
     {
       "at": "2026-09-25T06:36:24.859Z",
       "topicKey": "health:kids:social",
@@ -1172,6 +1166,14 @@
       "permlink": "how-to-research-crypto-projects-wisely-six-common-beginner-mistakes-to-avoid-mwv0phu0",
       "opening": "a clear statement of what the reader will be able to do after reading",
       "firstSentence": "By the time you finish reading this guide, you will be able to evaluate any new crypto project using six simple checks before you decide to spend a single minute or dollar on it."
+    },
+    {
+      "at": "2026-11-25T02:48:01.735Z",
+      "topicKey": "technology:parents:ev",
+      "title": "A Parent's Checklist for Electric Vehicles and Digital Safety",
+      "permlink": "a-parent-s-checklist-for-electric-vehicles-and-digital-safety-mwvix9om",
+      "opening": "a direct, useful statement or tip in the very first sentence, no scene-setting",
+      "firstSentence": "Setting your electric vehicle to stop charging at eighty percent for daily school runs protects the battery life and cuts down on long-term repair costs."
     }
   ]
 }
