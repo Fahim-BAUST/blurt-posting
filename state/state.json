@@ -1,12 +1,6 @@
 {
-  "nextPostAt": "2026-11-26T07:17:00.000Z",
+  "nextPostAt": "2026-11-26T22:24:00.000Z",
   "history": [
-    {
-      "at": "2026-09-26T00:02:43.151Z",
-      "topicKey": "technology:enthusiasts:cloud",
-      "title": "Demystifying the Cloud: What It Really Means and How to Use It Wisely",
-      "permlink": "demystifying-the-cloud-what-it-really-means-and-how-to-use-it-wisely-muhmlk2b"
-    },
     {
       "at": "2026-09-26T09:01:11.973Z",
       "topicKey": "lifestyle:remote:meal-prep",
@@ -1178,6 +1172,14 @@
       "permlink": "practical-ways-to-protect-family-eye-health-from-daily-screen-strain-mwwp9yzd",
       "opening": "a direct, useful statement or tip in the very first sentence, no scene-setting",
       "firstSentence": "Holding your phone at least sixteen inches away from your face reduces muscle effort inside your eyes and cuts down on tired, blurry vision by the end of the afternoon."
+    },
+    {
+      "at": "2026-11-26T14:26:07.445Z",
+      "topicKey": "crypto:holders:keys",
+      "title": "A Friendly Guide to Crypto Keys and Truly Owning Your Digital Assets",
+      "permlink": "a-friendly-guide-to-crypto-keys-and-truly-owning-your-digital-assets-mwxnav9u",
+      "opening": "a common mistake people make, stated plainly",
+      "firstSentence": "Leaving your crypto on the centralized platform where you bought it is like keeping your cash inside someone else's wallet and assuming it will stay safe forever."
     }
   ]
 }
