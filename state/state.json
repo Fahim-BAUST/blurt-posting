@@ -1,12 +1,6 @@
 {
-  "nextPostAt": "2026-11-28T00:07:00.000Z",
+  "nextPostAt": "2026-11-28T16:16:00.000Z",
   "history": [
-    {
-      "at": "2026-09-27T01:00:51.566Z",
-      "topicKey": "crypto:creators:blurt-earning",
-      "title": "Understanding How Rewards Work on Social Blockchains: 5 Simple Tips",
-      "permlink": "understanding-how-rewards-work-on-social-blockchains-5-simple-tips-muj4469o"
-    },
     {
       "at": "2026-09-27T09:01:10.407Z",
       "topicKey": "health:kids:sleep",
@@ -1184,6 +1178,14 @@
       "permlink": "simple-morning-breakfast-habits-for-busy-adults-to-stay-energized-all-day-mwz59f9v",
       "opening": "a direct, useful statement or tip in the very first sentence, no scene-setting",
       "firstSentence": "Combining a complex carbohydrate with a solid source of protein at breakfast prevents the sudden spike and crash in blood sugar that leaves you tired by mid-morning."
+    },
+    {
+      "at": "2026-11-28T07:39:28.416Z",
+      "topicKey": "crypto:beginners:wallet-security",
+      "title": "How to Keep Your Very First Crypto Wallet Safe and Sound",
+      "permlink": "how-to-keep-your-very-first-crypto-wallet-safe-and-sound-mx03nm0t",
+      "opening": "a simple, widely known fact stated in plain words, without citing any study, organisation or statistic",
+      "firstSentence": "Digital storage systems rely entirely on exact access credentials to confirm who owns stored information."
     }
   ]
 }
